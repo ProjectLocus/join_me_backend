@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface InvitationRepository extends CrudRepository<Invitation, Integer> {
 
-  List<Square> findAllByOrderByIdAsc();
+  List<Invitation> findAllByOrderByIdAsc();
 
 }

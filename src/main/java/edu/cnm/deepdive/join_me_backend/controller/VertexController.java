@@ -105,4 +105,7 @@ public class VertexController {
   public void notFound() {
   }
 
+  //make a get mapping to return all person associated with vertex, by calling the get persons via squares
+
+
 }

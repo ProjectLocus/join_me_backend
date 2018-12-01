@@ -1,7 +1,5 @@
 package edu.cnm.deepdive.join_me_backend.controller;
 
-
-
 import edu.cnm.deepdive.join_me_backend.model.dao.InvitationRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.PersonRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.SquareRepository;
@@ -110,5 +108,9 @@ public class SquareController {
   @ExceptionHandler(NoSuchElementException.class)
   public void notFound() {
   }
+
+  //todo: make a get mapping to return all persons attached to the square
+
+  //todo: make a delete mapping to delete a specific person attached to the square
 
 }

@@ -6,8 +6,12 @@ import edu.cnm.deepdive.join_me_backend.model.dao.PersonRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.SquareRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.VertexRepository;
 import edu.cnm.deepdive.join_me_backend.model.entity.Invitation;
+import edu.cnm.deepdive.join_me_backend.model.entity.Person;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.ExposesResourceFor;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,5 +37,8 @@ public class InvitationController {
     this.vertexRepository = vertexRepository;
   }
 
-
+  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+  public List<Invitation> list() {
+    return invitationRepository.findAllByOrderByIdAsc();
+  }
 }
