@@ -15,7 +15,7 @@ public interface BaseVertex {
 
 //  List<Person> getPeople();
 
-  long getId();
+  int getId();
 
   URI getHref();
 

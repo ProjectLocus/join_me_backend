@@ -33,7 +33,7 @@ public class Square implements BaseSquare {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "square_id", nullable = false, updatable = false)
-  private long id;
+  private int id;
 
 //  @NonNull
 //  @Column(nullable = false)
@@ -51,7 +51,11 @@ public class Square implements BaseSquare {
 //  @Column(nullable = false)
 //  private Vertex sWVertex;
 
+
+
 //  private List<Person> people;
+
+
 
   @ManyToMany(fetch = FetchType.LAZY,
   cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
@@ -101,7 +105,7 @@ public class Square implements BaseSquare {
 //  }
 
   @Override
-  public long getId() {
+  public int getId() {
     return id;
   }
 

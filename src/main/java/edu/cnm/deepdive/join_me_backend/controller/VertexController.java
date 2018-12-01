@@ -56,29 +56,29 @@ public class VertexController {
   }
 
   @GetMapping(value = "{vertexId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Vertex get(@PathVariable("vertexId") long vertexId){
+  public Vertex get(@PathVariable("vertexId") int vertexId){
     return vertexRepository.findById(vertexId).get();
   }
 
   @GetMapping(value = "{vertexId}", produces = MediaType.TEXT_HTML_VALUE)
-  public String getHTML(@PathVariable("vertexId") long vertexId){
+  public String getHTML(@PathVariable("vertexId") int vertexId){
     return "<html><body>" + vertexRepository.findById(vertexId).get().getId() + "</body></html>";
   }
 
   @DeleteMapping(value = "{vertexId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void delete(@PathVariable("vertexId") long vertexId){
+  public void delete(@PathVariable("vertexId") int vertexId){
     vertexRepository.deleteById(vertexId);
   }
 
   @GetMapping(value = "{vertexId}/squares", produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<Square> squareList(@PathVariable("vertexId") long vertexId) {
+  public List<Square> squareList(@PathVariable("vertexId") int vertexId) {
     return get(vertexId).getSquares();
   }
 
   @PostMapping(value = "{vertexId}/squares", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Square> postSquare(@PathVariable("vertexId") long vertexId,
+  public ResponseEntity<Square> postSquare(@PathVariable("vertexId") int vertexId,
       @RequestBody Vertex partialSquare){
     Square square = squareRepository.findById(partialSquare.getId()).get();
     Vertex vertex = get(vertexId);
@@ -89,7 +89,7 @@ public class VertexController {
 
   @DeleteMapping(value = "{vertexId}/squares/{squareId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteSquare(@PathVariable("vertexId") long vertexId, @PathVariable("squareId") long squareId){
+  public void deleteSquare(@PathVariable("vertexId") int vertexId, @PathVariable("squareId") int squareId){
     Vertex vertex = get(vertexId);
     Square square = squareRepository.findById(squareId).get();
     if (vertex.getSquares().remove(square)){

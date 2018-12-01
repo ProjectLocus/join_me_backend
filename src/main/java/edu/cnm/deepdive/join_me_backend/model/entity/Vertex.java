@@ -31,7 +31,7 @@ public class Vertex implements BaseVertex {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "vertex_id", nullable = false, updatable = false)
-  private long id;
+  private int id;
 
   @NonNull
   @Column(nullable = false)
@@ -79,7 +79,7 @@ public class Vertex implements BaseVertex {
 //  }
 
   @Override
-  public long getId() {
+  public int getId() {
     return id;
   }
 

@@ -58,14 +58,14 @@ public class SquareController {
   }
 
   @GetMapping(value = "{squareId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Square get(@PathVariable("squareId") long squareId) {
+  public Square get(@PathVariable("squareId") int squareId) {
     return squareRepository.findById(squareId).get();
   }
 
   @Transactional
   @DeleteMapping(value = "{squareId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void delete(@PathVariable("squareId") long squareId) {
+  public void delete(@PathVariable("squareId") int squareId) {
     Square square = get(squareId);
     List<Vertex> vertices = square.getVertices();
     for (Vertex vertex : vertices) {
@@ -77,13 +77,13 @@ public class SquareController {
 
   // TODONE Add controller method to return list of Student instances for a specified projectId.
   @GetMapping("{squareId}/vertices")
-  public List<Vertex> vertexList (@PathVariable("squareId") long squareId) {
+  public List<Vertex> vertexList (@PathVariable("squareId") int squareId) {
     return get(squareId).getVertices();
   }
 
   @PostMapping(value = "{squareId}/vertices", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Square> postVertex(@PathVariable("squareId") long squareId,
+  public ResponseEntity<Square> postVertex(@PathVariable("squareId") int squareId,
       @RequestBody Vertex partialVertex) {
     Square square = get(squareId);
     Vertex vertex = vertexRepository.findById(partialVertex.getId()).get();
@@ -94,8 +94,8 @@ public class SquareController {
 
   @DeleteMapping(value = "{squareId}/vertices/{vertexId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteVertex(@PathVariable("squareId") long squareId,
-      @PathVariable("vertexId") long vertexId) {
+  public void deleteVertex(@PathVariable("squareId") int squareId,
+      @PathVariable("vertexId") int vertexId) {
     Square square = get(squareId);
     Vertex vertex = vertexRepository.findById(vertexId).get();
     if (square.getVertices().remove(vertex)){

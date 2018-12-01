@@ -19,7 +19,7 @@ public interface BaseSquare {
 //
 //  Vertex getSWVertex();
 
-  long getId();
+  int getId();
 
   URI getHref();
 
