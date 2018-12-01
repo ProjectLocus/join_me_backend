@@ -45,7 +45,7 @@ public class VertexController {
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Vertex> list(){
-    return vertexRepository.findAllByOrderByNameAsc();
+    return vertexRepository.findAllByOrderByIdAsc();
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,

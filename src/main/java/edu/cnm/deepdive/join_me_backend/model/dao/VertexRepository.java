@@ -6,6 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface VertexRepository extends CrudRepository<Vertex, Long> {
 
-  List<Vertex> findAllByOrderByNameAsc();
+  List<Vertex> findAllByOrderByIdAsc();
 
 }
