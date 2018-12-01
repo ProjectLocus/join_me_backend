@@ -23,7 +23,7 @@ public class Person implements BasePerson {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "square_id", nullable = false, updatable = false)
+  @Column(name = "person_id", nullable = false, updatable = false)
   private int id;
 
   @PostConstruct
