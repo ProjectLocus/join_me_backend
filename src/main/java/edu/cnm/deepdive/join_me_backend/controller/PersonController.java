@@ -10,6 +10,7 @@ import edu.cnm.deepdive.join_me_backend.model.entity.Person;
 import edu.cnm.deepdive.join_me_backend.model.entity.Square;
 import edu.cnm.deepdive.join_me_backend.model.entity.Vertex;
 import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -62,6 +64,17 @@ public class PersonController {
   @GetMapping(value = "{personId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Person get(@PathVariable("personId") int personId) {
     return personRepository.findById(personId).get();
+  }
+
+  @PutMapping("{personId}")
+  public ResponseEntity<Object> updateStudent(@RequestBody Person person, @PathVariable ("personId") int personId) {
+    Optional<Person> personOptional = personRepository.findById(personId);
+    if (!personOptional.isPresent()){
+      return ResponseEntity.notFound().build();
+    }
+    person.setId(personId);
+    personRepository.save(person);
+    return ResponseEntity.noContent().build();
   }
 
 

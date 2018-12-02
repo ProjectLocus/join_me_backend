@@ -42,6 +42,10 @@ public class Person implements BasePerson {
     return id;
   }
 
+  public void setId(int id) {
+    this.id = id;
+  }
+
   @Override
   public URI getHref() {
     return entityLinks.linkForSingleResource(Square.class, id).toUri();
