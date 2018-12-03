@@ -1,5 +1,6 @@
 package edu.cnm.deepdive.join_me_backend.view;
 
+import edu.cnm.deepdive.join_me_backend.model.entity.Vertex;
 import java.net.URI;
 
 public interface BasePerson {
@@ -17,5 +18,7 @@ public interface BasePerson {
   String getUserImageLocation();
 
   String getUserDescription();
+
+  Vertex getClosestVertex();
 
 }

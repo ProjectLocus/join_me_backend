@@ -2,16 +2,25 @@ package edu.cnm.deepdive.join_me_backend.model.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 import edu.cnm.deepdive.join_me_backend.view.BasePerson;
 import java.net.URI;
 import javax.annotation.PostConstruct;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityLinks;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
 @Entity
@@ -25,6 +34,13 @@ public class Person implements BasePerson {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "person_id", nullable = false, updatable = false)
   private int id;
+
+  @NonNull
+//  @JsonView(Nested.class)
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "vertex_id", nullable = false, updatable = true)
+  @OnDelete(action = OnDeleteAction.NO_ACTION)
+  private Vertex closestVertex;
 
   //todo:  add list of invitations
 
@@ -89,6 +105,15 @@ public class Person implements BasePerson {
   @Override
   public String getUserDescription() {
     return userDescription;
+  }
+
+  @Override
+  public Vertex getClosestVertex() {
+    return closestVertex;
+  }
+
+  public void setClosestVertex(Vertex closestVertex) {
+    this.closestVertex = closestVertex;
   }
 
   public void setLatitude(double latitude) {
