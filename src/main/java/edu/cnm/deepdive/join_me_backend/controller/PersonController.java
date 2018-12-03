@@ -49,6 +49,7 @@ public class PersonController {
     this.vertexRepository = vertexRepository;
   }
 
+  //
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Person> list() {
     return personRepository.findAllByOrderByIdAsc();
@@ -67,7 +68,7 @@ public class PersonController {
   }
 
   @PutMapping("{personId}")
-  public ResponseEntity<Object> updateStudent(@RequestBody Person person, @PathVariable ("personId") int personId) {
+  public ResponseEntity<Person> updateStudent(@RequestBody Person person, @PathVariable ("personId") int personId) {
     Optional<Person> personOptional = personRepository.findById(personId);
     if (!personOptional.isPresent()){
       return ResponseEntity.notFound().build();
@@ -75,6 +76,11 @@ public class PersonController {
     person.setId(personId);
     personRepository.save(person);
     return ResponseEntity.noContent().build();
+  }
+
+  @DeleteMapping("{personId}")
+  public void deletePerson(@PathVariable ("personId") int personId){
+    personRepository.deleteById(personId);
   }
 
 
