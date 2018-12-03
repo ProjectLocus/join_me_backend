@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 import edu.cnm.deepdive.join_me_backend.view.BasePerson;
 import java.net.URI;
+import java.util.LinkedList;
+import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
@@ -15,7 +18,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderBy;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +48,12 @@ public class Person implements BasePerson {
   @OnDelete(action = OnDeleteAction.NO_ACTION)
   private Vertex closestVertex;
 
-  //todo:  add list of invitations
+  @ManyToMany(fetch = FetchType.LAZY,
+      cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+  @JoinTable(joinColumns = @JoinColumn(name = "person_id"),
+      inverseJoinColumns = @JoinColumn(name = "invitation_id"))
+  @OrderBy("name ASC")
+  private List<Invitation> invitations = new LinkedList<>();
 
   private double latitude;
 
@@ -134,5 +145,9 @@ public class Person implements BasePerson {
 
   public void setUserDescription(String userDescription) {
     this.userDescription = userDescription;
+  }
+
+  public List<Invitation> getInvitations() {
+    return invitations;
   }
 }
