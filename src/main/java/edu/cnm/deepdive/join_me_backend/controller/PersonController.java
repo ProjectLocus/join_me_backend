@@ -68,7 +68,7 @@ public class PersonController {
   }
 
   @PutMapping("{personId}")
-  public ResponseEntity<Person> updateStudent(@RequestBody Person person, @PathVariable ("personId") int personId) {
+  public ResponseEntity<Person> updatePerson(@RequestBody Person person, @PathVariable ("personId") int personId) {
     Optional<Person> personOptional = personRepository.findById(personId);
     if (!personOptional.isPresent()){
       return ResponseEntity.notFound().build();
@@ -88,5 +88,25 @@ public class PersonController {
     return personRepository.findById(personId).get().getInvitations();
   }
 
+  @GetMapping(value = "{personId}/invitations/{invitationId}",
+      produces = MediaType.APPLICATION_JSON_VALUE)
+  public Invitation getInvitationPerPerson(@PathVariable ("invitationId") int invitationId){
+    return invitationRepository.findById(invitationId).get();
+  }
+
+  @PostMapping(value = "{personId}/invitations", consumes = MediaType.APPLICATION_JSON_VALUE,
+  produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<Invitation> addInvitation(@PathVariable("personId") int personId,
+      @RequestBody Invitation invitation){
+    Optional<Person> personOptional = personRepository.findById(personId);
+    if (!personOptional.isPresent()){
+      return ResponseEntity.notFound().build();
+    }
+    List<Invitation> tempInvites = personOptional.get().getInvitations();
+    tempInvites.add(invitation);
+    personOptional.get().setInvitations(tempInvites);
+    personRepository.save(personOptional.get());
+    return ResponseEntity.created(invitation.getHref()).body(invitation);
+  }
 
 }
