@@ -66,26 +66,46 @@ public class Person implements BasePerson {
 
   @Override
   public double getLatitude() {
-    return 0;
+    return latitude;
   }
 
-  @Override
+    @Override
   public double getLongitude() {
-    return 0;
+    return longitude;
   }
 
   @Override
   public String getDisplayName() {
-    return null;
+    return displayName;
   }
 
   @Override
   public String getUserImageLocation() {
-    return null;
+    return userImageLocation;
   }
 
   @Override
   public String getUserDescription() {
-    return null;
+    return userDescription;
+  }
+
+  public void setLatitude(double latitude) {
+    this.latitude = latitude;
+  }
+
+  public void setLongitude(double longitude) {
+    this.longitude = longitude;
+  }
+
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
+  }
+
+  public void setUserImageLocation(String userImageLocation) {
+    this.userImageLocation = userImageLocation;
+  }
+
+  public void setUserDescription(String userDescription) {
+    this.userDescription = userDescription;
   }
 }
