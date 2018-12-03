@@ -43,6 +43,12 @@ public class Invitation implements BaseInvitation {
   @Column(name = "user_receiver_id")
   private int userReceiverId;
 
+  @Column(name = "was_delivered")
+  private boolean wasDelivered;
+
+  @Column(name = "will_attend")
+  private boolean willAttend;
+
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "invitations",
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @OrderBy("name ASC")
@@ -76,7 +82,34 @@ public class Invitation implements BaseInvitation {
     return userReceiverId;
   }
 
+  @Override
   public List<Person> getPeople() {
     return people;
+  }
+
+  public void setUserSenderId(int userSenderId) {
+    this.userSenderId = userSenderId;
+  }
+
+  public void setUserReceiverId(int userReceiverId) {
+    this.userReceiverId = userReceiverId;
+  }
+
+  @Override
+  public boolean getWasDelivered() {
+    return wasDelivered;
+  }
+
+  public void setWasDelivered(boolean wasDelivered) {
+    this.wasDelivered = wasDelivered;
+  }
+
+  @Override
+  public boolean getWillAttend() {
+    return willAttend;
+  }
+
+  public void setWillAttend(boolean willAttend) {
+    this.willAttend = willAttend;
   }
 }

@@ -17,4 +17,8 @@ public interface BaseInvitation {
 
   List<Person> getPeople();
 
+  boolean getWasDelivered();
+
+  boolean getWillAttend();
+
 }
