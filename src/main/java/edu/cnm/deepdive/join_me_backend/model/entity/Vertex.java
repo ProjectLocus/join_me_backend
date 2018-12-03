@@ -14,6 +14,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OrderBy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,8 +45,10 @@ public class Vertex implements BaseVertex {
 
 //  private List<Person> people;
 
-  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "vertices",
+  @ManyToMany(fetch = FetchType.LAZY,
   cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+  @JoinTable(joinColumns = @JoinColumn(name = "vertex_id"),
+      inverseJoinColumns = @JoinColumn(name = "square_id"))
   @OrderBy("name ASC")
   private List<Square> squares = new LinkedList<>();
 

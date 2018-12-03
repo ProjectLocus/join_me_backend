@@ -57,10 +57,8 @@ public class Square implements BaseSquare {
 
 
 
-  @ManyToMany(fetch = FetchType.LAZY,
+  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "squares",
   cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-  @JoinTable(joinColumns = @JoinColumn(name = "square_id"),
-  inverseJoinColumns = @JoinColumn(name = "vertex_id"))
   @OrderBy("name ASC")
   private List<Vertex> vertices = new LinkedList<>();
 
