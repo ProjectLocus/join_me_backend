@@ -21,8 +21,4 @@ public interface BasePerson {
 
   String getUserDescription();
 
-  Vertex getClosestVertex();
-
-  List<Invitation> getInvitations();
-
 }

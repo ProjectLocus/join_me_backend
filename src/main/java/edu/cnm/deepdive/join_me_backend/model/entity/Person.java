@@ -3,7 +3,10 @@ package edu.cnm.deepdive.join_me_backend.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import edu.cnm.deepdive.join_me_backend.view.BaseInvitation;
 import edu.cnm.deepdive.join_me_backend.view.BasePerson;
+import edu.cnm.deepdive.join_me_backend.view.BaseVertex;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,8 +45,7 @@ public class Person implements BasePerson {
   private int id;
 
   @NonNull
-//  @JsonView(Nested.class)
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "vertex_id", nullable = false, updatable = true)
   @OnDelete(action = OnDeleteAction.NO_ACTION)
   private Vertex closestVertex;
@@ -118,7 +120,7 @@ public class Person implements BasePerson {
     return userDescription;
   }
 
-  @Override
+  @JsonSerialize(contentAs = BaseVertex.class)
   public Vertex getClosestVertex() {
     return closestVertex;
   }
@@ -147,6 +149,7 @@ public class Person implements BasePerson {
     this.userDescription = userDescription;
   }
 
+  @JsonSerialize(contentAs = BaseInvitation.class)
   public List<Invitation> getInvitations() {
     return invitations;
   }

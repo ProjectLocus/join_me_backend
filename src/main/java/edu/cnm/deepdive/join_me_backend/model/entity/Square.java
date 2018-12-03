@@ -2,7 +2,10 @@ package edu.cnm.deepdive.join_me_backend.model.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import edu.cnm.deepdive.join_me_backend.view.BasePerson;
 import edu.cnm.deepdive.join_me_backend.view.BaseSquare;
+import edu.cnm.deepdive.join_me_backend.view.BaseVertex;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
@@ -32,8 +35,7 @@ public class Square implements BaseSquare {
   private static EntityLinks entityLinks;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "square_id", nullable = false, updatable = false)
+  @Column(name = "square_id", nullable = false, updatable = false, unique = true)
   private int id;
 
   private double latitudeLowerBound;
@@ -61,12 +63,12 @@ public class Square implements BaseSquare {
     Square.entityLinks = entityLinks;
   }
 
-  @Override
+  @JsonSerialize(contentAs = BasePerson.class)
   public List<Person> getPeople() {
     return people;
   }
 
-  @Override
+  @JsonSerialize(contentAs = BaseVertex.class)
   public List<Vertex> getVertices() {
     return vertices;
   }
@@ -123,5 +125,9 @@ public class Square implements BaseSquare {
 
   public void setPeople(List<Person> people) {
     this.people = people;
+  }
+
+  public void setId(int id) {
+    this.id = id;
   }
 }

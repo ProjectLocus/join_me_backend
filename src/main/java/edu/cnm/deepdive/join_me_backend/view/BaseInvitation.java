@@ -15,8 +15,6 @@ public interface BaseInvitation {
 
   int getUserReceiverId();
 
-  List<Person> getPeople();
-
   boolean getWasDelivered();
 
   boolean getWillAttend();

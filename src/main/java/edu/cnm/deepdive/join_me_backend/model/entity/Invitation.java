@@ -2,7 +2,10 @@ package edu.cnm.deepdive.join_me_backend.model.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.cnm.deepdive.join_me_backend.view.BaseInvitation;
+import edu.cnm.deepdive.join_me_backend.view.BasePerson;
+import edu.cnm.deepdive.join_me_backend.view.BaseVertex;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
@@ -82,7 +85,7 @@ public class Invitation implements BaseInvitation {
     return userReceiverId;
   }
 
-  @Override
+  @JsonSerialize(contentAs = BasePerson.class)
   public List<Person> getPeople() {
     return people;
   }

@@ -11,8 +11,6 @@ public interface BaseVertex {
 
   double getLongitude();
 
-  List<Square> getSquares();
-
   int getId();
 
   URI getHref();

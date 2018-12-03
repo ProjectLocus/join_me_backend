@@ -7,6 +7,7 @@ import edu.cnm.deepdive.join_me_backend.model.dao.SquareRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.VertexRepository;
 import edu.cnm.deepdive.join_me_backend.model.entity.Square;
 import edu.cnm.deepdive.join_me_backend.model.entity.Vertex;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +52,124 @@ public class VertexController {
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
   produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Vertex> post(@RequestBody Vertex vertex){
-    vertexRepository.save(vertex);
-    return ResponseEntity.created(vertex.getHref()).body(vertex);
+  public ResponseEntity<Vertex> post(){
+
+    try {
+      List<Square> adjacentSquares = new LinkedList<>();
+      List<Vertex> grid = new LinkedList<>();
+
+      Vertex v1 = new Vertex();
+      v1.setLatitude(35.0859000);
+      v1.setLongitude(-106.6496000);
+      v1.setId(1001);
+      adjacentSquares.add(squareRepository.findById(100001).get());
+      adjacentSquares.add(squareRepository.findById(200002).get());
+      adjacentSquares.add(squareRepository.findById(500005).get());
+      adjacentSquares.add(squareRepository.findById(600006).get());
+      v1.setSquares(adjacentSquares);
+      grid.add(v1);
+
+      adjacentSquares = new LinkedList<>();
+      Vertex v2 = new Vertex();
+      v2.setLatitude(35.0859000);
+      v2.setLongitude(-106.6495000);
+      v2.setId(2002);
+      adjacentSquares.add(squareRepository.findById(300003).get());
+      adjacentSquares.add(squareRepository.findById(200002).get());
+      adjacentSquares.add(squareRepository.findById(700007).get());
+      adjacentSquares.add(squareRepository.findById(600006).get());
+      v2.setSquares(adjacentSquares);
+      grid.add(v2);
+
+      adjacentSquares = new LinkedList<>();
+      Vertex v3 = new Vertex();
+      v3.setLatitude(35.0859000);
+      v3.setLongitude(-106.6494000);
+      v3.setId(3003);
+      adjacentSquares.add(squareRepository.findById(300003).get());
+      adjacentSquares.add(squareRepository.findById(400004).get());
+      adjacentSquares.add(squareRepository.findById(700007).get());
+      adjacentSquares.add(squareRepository.findById(800008).get());
+      v3.setSquares(adjacentSquares);
+      grid.add(v3);
+
+      adjacentSquares = new LinkedList<>();
+      Vertex v4 = new Vertex();
+      v4.setLatitude(35.0860000);
+      v4.setLongitude(-106.6496000);
+      v4.setId(4004);
+      adjacentSquares.add(squareRepository.findById(500005).get());
+      adjacentSquares.add(squareRepository.findById(600006).get());
+      adjacentSquares.add(squareRepository.findById(900009).get());
+      adjacentSquares.add(squareRepository.findById(10000010).get());
+      v4.setSquares(adjacentSquares);
+      grid.add(v4);
+
+      adjacentSquares = new LinkedList<>();
+      Vertex v5 = new Vertex();
+      v5.setLatitude(35.0860000);
+      v5.setLongitude(-106.6495000);
+      v5.setId(5005);
+      adjacentSquares.add(squareRepository.findById(700007).get());
+      adjacentSquares.add(squareRepository.findById(600006).get());
+      adjacentSquares.add(squareRepository.findById(11000011).get());
+      adjacentSquares.add(squareRepository.findById(10000010).get());
+      v5.setSquares(adjacentSquares);
+      grid.add(v5);
+
+      adjacentSquares = new LinkedList<>();
+      Vertex v6 = new Vertex();
+      v6.setLatitude(35.0860000);
+      v6.setLongitude(-106.6494000);
+      v6.setId(6006);
+      adjacentSquares.add(squareRepository.findById(700007).get());
+      adjacentSquares.add(squareRepository.findById(800008).get());
+      adjacentSquares.add(squareRepository.findById(11000011).get());
+      adjacentSquares.add(squareRepository.findById(12000012).get());
+      v6.setSquares(adjacentSquares);
+      grid.add(v6);
+
+      adjacentSquares = new LinkedList<>();
+      Vertex v7 = new Vertex();
+      v7.setLatitude(35.0861000);
+      v7.setLongitude(-106.6496000);
+      v7.setId(7007);
+      adjacentSquares.add(squareRepository.findById(900009).get());
+      adjacentSquares.add(squareRepository.findById(10000010).get());
+      adjacentSquares.add(squareRepository.findById(13000013).get());
+      adjacentSquares.add(squareRepository.findById(14000014).get());
+      v7.setSquares(adjacentSquares);
+      grid.add(v7);
+
+      adjacentSquares = new LinkedList<>();
+      Vertex v8 = new Vertex();
+      v8.setLatitude(35.0861000);
+      v8.setLongitude(-106.6495000);
+      v8.setId(8008);
+      adjacentSquares.add(squareRepository.findById(11000011).get());
+      adjacentSquares.add(squareRepository.findById(10000010).get());
+      adjacentSquares.add(squareRepository.findById(15000015).get());
+      adjacentSquares.add(squareRepository.findById(14000014).get());
+      v8.setSquares(adjacentSquares);
+      grid.add(v8);
+
+      adjacentSquares = new LinkedList<>();
+      Vertex v9 = new Vertex();
+      v9.setLatitude(35.0861000);
+      v9.setLongitude(-106.6494000);
+      v9.setId(9009);
+      adjacentSquares.add(squareRepository.findById(11000011).get());
+      adjacentSquares.add(squareRepository.findById(12000012).get());
+      adjacentSquares.add(squareRepository.findById(15000015).get());
+      adjacentSquares.add(squareRepository.findById(16000016).get());
+      v9.setSquares(adjacentSquares);
+      grid.add(v9);
+      vertexRepository.saveAll(grid);
+      return ResponseEntity.noContent().build();
+    } catch (Exception e) {
+      return ResponseEntity.badRequest().build();
+    }
+
   }
 
   @GetMapping(value = "{vertexId}", produces = MediaType.APPLICATION_JSON_VALUE)

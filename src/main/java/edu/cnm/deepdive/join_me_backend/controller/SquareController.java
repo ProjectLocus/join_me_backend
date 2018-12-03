@@ -6,6 +6,7 @@ import edu.cnm.deepdive.join_me_backend.model.dao.SquareRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.VertexRepository;
 import edu.cnm.deepdive.join_me_backend.model.entity.Square;
 import edu.cnm.deepdive.join_me_backend.model.entity.Vertex;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import javax.transaction.Transactional;
@@ -51,9 +52,138 @@ public class SquareController {
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Square> post(@RequestBody Square square) {
-    squareRepository.save(square);
-    return ResponseEntity.created(square.getHref()).body(square);
+  public ResponseEntity<List<Square>> post() {
+    List<Square> grid = new LinkedList<>();
+    Square sq1 = new Square();
+    sq1.setId(100001);
+    sq1.setLatitudeLowerBound(35.0858000);
+    sq1.setLatitudeUpperBound(35.0859000);
+    sq1.setLongitudeLowerBound(-106.6497000);
+    sq1.setLongitudeUpperBound(-106.6496000);
+    grid.add(sq1);
+
+    Square sq2 = new Square();
+    sq2.setId(200002);
+    sq2.setLatitudeLowerBound(35.0858000);
+    sq2.setLatitudeUpperBound(35.0859000);
+    sq2.setLongitudeLowerBound(-106.6496000);
+    sq2.setLongitudeUpperBound(-106.6495000);
+    grid.add(sq2);
+
+    Square sq3 = new Square();
+    sq3.setId(300003);
+    sq3.setLatitudeLowerBound(35.0858000);
+    sq3.setLatitudeUpperBound(35.0859000);
+    sq3.setLongitudeLowerBound(-106.6495000);
+    sq3.setLongitudeUpperBound(-106.6494000);
+    grid.add(sq3);
+
+    Square sq4 = new Square();
+    sq4.setId(400004);
+    sq4.setLatitudeLowerBound(35.0858000);
+    sq4.setLatitudeUpperBound(35.0859000);
+    sq4.setLongitudeLowerBound(-106.6494000);
+    sq4.setLongitudeUpperBound(-106.6493000);
+    grid.add(sq4);
+
+    Square sq5 = new Square();
+    sq5.setId(500005);
+    sq5.setLatitudeLowerBound(35.0859000);
+    sq5.setLatitudeUpperBound(35.0860000);
+    sq5.setLongitudeLowerBound(-106.6497000);
+    sq5.setLongitudeUpperBound(-106.6496000);
+    grid.add(sq5);
+
+    Square sq6 = new Square();
+    sq6.setId(600006);
+    sq6.setLatitudeLowerBound(35.0859000);
+    sq6.setLatitudeUpperBound(35.0860000);
+    sq6.setLongitudeLowerBound(-106.6496000);
+    sq6.setLongitudeUpperBound(-106.6495000);
+    grid.add(sq6);
+
+    Square sq7 = new Square();
+    sq7.setId(700007);
+    sq7.setLatitudeLowerBound(35.0859000);
+    sq7.setLatitudeUpperBound(35.0860000);
+    sq7.setLongitudeLowerBound(-106.6495000);
+    sq7.setLongitudeUpperBound(-106.6494000);
+    grid.add(sq7);
+
+    Square sq8 = new Square();
+    sq8.setId(800008);
+    sq8.setLatitudeLowerBound(35.0859000);
+    sq8.setLatitudeUpperBound(35.0860000);
+    sq8.setLongitudeLowerBound(-106.6494000);
+    sq8.setLongitudeUpperBound(-106.6493000);
+    grid.add(sq8);
+
+    Square sq9 = new Square();
+    sq9.setId(900009);
+    sq9.setLatitudeLowerBound(35.0860000);
+    sq9.setLatitudeUpperBound(35.0861000);
+    sq9.setLongitudeLowerBound(-106.6497000);
+    sq9.setLongitudeUpperBound(-106.6496000);
+    grid.add(sq9);
+
+    Square sq10 = new Square();
+    sq10.setId(10000010);
+    sq10.setLatitudeLowerBound(35.0860000);
+    sq10.setLatitudeUpperBound(35.0861000);
+    sq10.setLongitudeLowerBound(-106.6496000);
+    sq10.setLongitudeUpperBound(-106.6495000);
+    grid.add(sq10);
+
+    Square sq11 = new Square();
+    sq11.setId(11000011);
+    sq11.setLatitudeLowerBound(35.0860000);
+    sq11.setLatitudeUpperBound(35.0861000);
+    sq11.setLongitudeLowerBound(-106.6495000);
+    sq11.setLongitudeUpperBound(-106.6494000);
+    grid.add(sq11);
+
+    Square sq12 = new Square();
+    sq12.setId(12000012);
+    sq12.setLatitudeLowerBound(35.0860000);
+    sq12.setLatitudeUpperBound(35.0861000);
+    sq12.setLongitudeLowerBound(-106.6494000);
+    sq12.setLongitudeUpperBound(-106.6493000);
+    grid.add(sq12);
+
+    Square sq13 = new Square();
+    sq13.setId(13000013);
+    sq13.setLatitudeLowerBound(35.0861000);
+    sq13.setLatitudeUpperBound(35.0862000);
+    sq13.setLongitudeLowerBound(-106.6497000);
+    sq13.setLongitudeUpperBound(-106.6496000);
+    grid.add(sq13);
+
+    Square sq14 = new Square();
+    sq14.setId(14000014);
+    sq14.setLatitudeLowerBound(35.0861000);
+    sq14.setLatitudeUpperBound(35.0862000);
+    sq14.setLongitudeLowerBound(-106.6496000);
+    sq14.setLongitudeUpperBound(-106.6495000);
+    grid.add(sq14);
+
+    Square sq15 = new Square();
+    sq15.setId(15000015);
+    sq15.setLatitudeLowerBound(35.0861000);
+    sq15.setLatitudeUpperBound(35.0862000);
+    sq15.setLongitudeLowerBound(-106.6495000);
+    sq15.setLongitudeUpperBound(-106.6494000);
+    grid.add(sq15);
+
+    Square sq16 = new Square();
+    sq16.setId(16000016);
+    sq16.setLatitudeLowerBound(35.0861000);
+    sq16.setLatitudeUpperBound(35.0862000);
+    sq16.setLongitudeLowerBound(-106.6494000);
+    sq16.setLongitudeUpperBound(-106.6493000);
+    grid.add(sq16);
+
+    squareRepository.saveAll(grid);
+    return ResponseEntity.noContent().build();
   }
 
   @GetMapping(value = "{squareId}", produces = MediaType.APPLICATION_JSON_VALUE)

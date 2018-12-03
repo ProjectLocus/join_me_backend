@@ -7,10 +7,6 @@ import java.util.List;
 
 public interface BaseSquare {
 
-  List<Person> getPeople();
-
-  List<Vertex> getVertices();
-
   double getLatitudeLowerBound();
 
   double getLatitudeUpperBound();
