@@ -8,4 +8,14 @@ public interface BasePerson {
 
   URI getHref();
 
+  double getLatitude();
+
+  double getLongitude();
+
+  String getDisplayName();
+
+  String getUserImageLocation();
+
+  String getUserDescription();
+
 }

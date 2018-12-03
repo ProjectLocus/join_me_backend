@@ -26,6 +26,19 @@ public class Person implements BasePerson {
   @Column(name = "person_id", nullable = false, updatable = false)
   private int id;
 
+  private double latitude;
+
+  private double longitude;
+
+  @Column(name = "display_name")
+  private String displayName;
+
+  @Column(name = "user_image_location")
+  private String userImageLocation;
+
+  @Column(name = "user_description")
+  private String userDescription;
+
   @PostConstruct
   private void initEntityLinks(){
     String ignore = entityLinks.toString();
@@ -49,5 +62,30 @@ public class Person implements BasePerson {
   @Override
   public URI getHref() {
     return entityLinks.linkForSingleResource(Square.class, id).toUri();
+  }
+
+  @Override
+  public double getLatitude() {
+    return 0;
+  }
+
+  @Override
+  public double getLongitude() {
+    return 0;
+  }
+
+  @Override
+  public String getDisplayName() {
+    return null;
+  }
+
+  @Override
+  public String getUserImageLocation() {
+    return null;
+  }
+
+  @Override
+  public String getUserDescription() {
+    return null;
   }
 }
