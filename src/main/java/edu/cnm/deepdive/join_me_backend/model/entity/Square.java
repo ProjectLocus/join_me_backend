@@ -48,7 +48,7 @@ public class Square implements BaseSquare {
 
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "squares",
   cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-  @OrderBy("name ASC")
+//  @OrderBy("name ASC")
   private List<Vertex> vertices = new LinkedList<>();
 
   @PostConstruct

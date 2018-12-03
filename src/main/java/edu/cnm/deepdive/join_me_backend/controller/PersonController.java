@@ -53,12 +53,14 @@ public class PersonController {
   //
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Person> list() {
-    return personRepository.findAllByOrderByIdAsc();
+    return personRepository.findAll();
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Person> post(@RequestBody Person person) {
+    //todo: set vertex to person and update position
+    person.setClosestVertex(vertexRepository.findAll().get(0));
     personRepository.save(person);
     return ResponseEntity.created(person.getHref()).body(person);
   }

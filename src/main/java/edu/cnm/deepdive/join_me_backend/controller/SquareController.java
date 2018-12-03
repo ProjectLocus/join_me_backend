@@ -46,7 +46,7 @@ public class SquareController {
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Square> list() {
-    return squareRepository.findAllByOrderByIdAsc();
+    return squareRepository.findAll();
   }
 
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,

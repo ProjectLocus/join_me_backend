@@ -40,7 +40,7 @@ public class InvitationController {
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Invitation> list() {
-    return invitationRepository.findAllByOrderByIdAsc();
+    return invitationRepository.findAll();
   }
 
   @GetMapping(value = "{invitationId}", produces = MediaType.APPLICATION_JSON_VALUE)

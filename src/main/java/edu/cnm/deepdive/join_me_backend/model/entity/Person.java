@@ -52,7 +52,7 @@ public class Person implements BasePerson {
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @JoinTable(joinColumns = @JoinColumn(name = "person_id"),
       inverseJoinColumns = @JoinColumn(name = "invitation_id"))
-  @OrderBy("name ASC")
+//  @OrderBy("name ASC")
   private List<Invitation> invitations = new LinkedList<>();
 
   private double latitude;

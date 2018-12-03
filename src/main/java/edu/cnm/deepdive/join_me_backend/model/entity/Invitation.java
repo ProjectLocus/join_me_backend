@@ -51,7 +51,7 @@ public class Invitation implements BaseInvitation {
 
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "invitations",
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-  @OrderBy("name ASC")
+//  @OrderBy(value = "person_id")
   private List<Person> people = new LinkedList<>();
 
   @PostConstruct

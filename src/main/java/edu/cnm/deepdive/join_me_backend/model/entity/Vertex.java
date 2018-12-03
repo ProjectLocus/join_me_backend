@@ -47,7 +47,7 @@ public class Vertex implements BaseVertex {
   cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @JoinTable(joinColumns = @JoinColumn(name = "vertex_id"),
       inverseJoinColumns = @JoinColumn(name = "square_id"))
-  @OrderBy("name ASC")
+//  @OrderBy("name ASC")
   private List<Square> squares = new LinkedList<>();
 
   @PostConstruct
