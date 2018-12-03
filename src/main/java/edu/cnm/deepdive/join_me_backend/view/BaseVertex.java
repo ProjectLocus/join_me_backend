@@ -13,8 +13,6 @@ public interface BaseVertex {
 
   List<Square> getSquares();
 
-//  List<Person> getPeople();
-
   int getId();
 
   URI getHref();

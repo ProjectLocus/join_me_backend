@@ -43,8 +43,6 @@ public class Vertex implements BaseVertex {
   @Column(nullable = false)
   private double longitude;
 
-//  private List<Person> people;
-
   @ManyToMany(fetch = FetchType.LAZY,
   cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @JoinTable(joinColumns = @JoinColumn(name = "vertex_id"),
@@ -77,11 +75,6 @@ public class Vertex implements BaseVertex {
     return squares;
   }
 
-//  @Override
-//  public List<Person> getPeople() {
-//    return people;
-//  }
-
   @Override
   public int getId() {
     return id;
@@ -104,7 +97,4 @@ public class Vertex implements BaseVertex {
     this.squares = squares;
   }
 
-//  public void setPeople(List<Person> people) {
-//    this.people = people;
-//  }
 }
