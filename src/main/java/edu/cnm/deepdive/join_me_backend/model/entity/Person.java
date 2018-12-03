@@ -26,6 +26,8 @@ public class Person implements BasePerson {
   @Column(name = "person_id", nullable = false, updatable = false)
   private int id;
 
+  //todo:  add list of invitations
+
   private double latitude;
 
   private double longitude;

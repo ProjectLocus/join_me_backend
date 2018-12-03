@@ -9,6 +9,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -35,25 +36,13 @@ public class Square implements BaseSquare {
   @Column(name = "square_id", nullable = false, updatable = false)
   private int id;
 
-//  @NonNull
-//  @Column(nullable = false)
-//  private Vertex nWVertex;
-//
-//  @NonNull
-//  @Column(nullable = false)
-//  private Vertex nEVertex;
-//
-//  @NonNull
-//  @Column(nullable = false)
-//  private Vertex sEVertex;
-//
-//  @NonNull
-//  @Column(nullable = false)
-//  private Vertex sWVertex;
+  private double latitudeLowerBound;
+  private double latitudeUpperBound;
+  private double longitudeLowerBound;
+  private double longitudeUpperBound;
 
-
-
-//  private List<Person> people;
+  @ElementCollection
+  private List<Person> people = new LinkedList<>();
 
 
 
@@ -72,35 +61,35 @@ public class Square implements BaseSquare {
     Square.entityLinks = entityLinks;
   }
 
-//  @Override
-//  public List<Person> getPeople() {
-//    return people;
-//  }
+  @Override
+  public List<Person> getPeople() {
+    return people;
+  }
 
   @Override
   public List<Vertex> getVertices() {
     return vertices;
   }
 
-//  @Override
-//  public Vertex getNWVertex() {
-//    return nWVertex;
-//  }
-//
-//  @Override
-//  public Vertex getNEVertex() {
-//    return nEVertex;
-//  }
-//
-//  @Override
-//  public Vertex getSEVertex() {
-//    return sEVertex;
-//  }
-//
-//  @Override
-//  public Vertex getSWVertex() {
-//    return sWVertex;
-//  }
+  @Override
+  public double getLatitudeLowerBound() {
+    return latitudeLowerBound;
+  }
+
+  @Override
+  public double getLatitudeUpperBound() {
+    return latitudeUpperBound;
+  }
+
+  @Override
+  public double getLongitudeLowerBound() {
+    return longitudeLowerBound;
+  }
+
+  @Override
+  public double getLongitudeUpperBound() {
+    return longitudeUpperBound;
+  }
 
   @Override
   public int getId() {
@@ -112,27 +101,27 @@ public class Square implements BaseSquare {
     return entityLinks.linkForSingleResource(Square.class, id).toUri();
   }
 
-//  public void setnWVertex(Vertex nWVertex) {
-//    this.nWVertex = nWVertex;
-//  }
-//
-//  public void setnEVertex(Vertex nEVertex) {
-//    this.nEVertex = nEVertex;
-//  }
-//
-//  public void setsEVertex(Vertex sEVertex) {
-//    this.sEVertex = sEVertex;
-//  }
-//
-//  public void setsWVertex(Vertex sWVertex) {
-//    this.sWVertex = sWVertex;
-//  }
-
-//  public void setPeople(List<Person> people) {
-//    this.people = people;
-//  }
-
   public void setVertices(List<Vertex> vertices) {
     this.vertices = vertices;
+  }
+
+  public void setLatitudeLowerBound(double latitudeLowerBound) {
+    this.latitudeLowerBound = latitudeLowerBound;
+  }
+
+  public void setLatitudeUpperBound(double latitudeUpperBound) {
+    this.latitudeUpperBound = latitudeUpperBound;
+  }
+
+  public void setLongitudeLowerBound(double longitudeLowerBound) {
+    this.longitudeLowerBound = longitudeLowerBound;
+  }
+
+  public void setLongitudeUpperBound(double longitudeUpperBound) {
+    this.longitudeUpperBound = longitudeUpperBound;
+  }
+
+  public void setPeople(List<Person> people) {
+    this.people = people;
   }
 }

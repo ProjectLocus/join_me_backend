@@ -7,17 +7,17 @@ import java.util.List;
 
 public interface BaseSquare {
 
-//  List<Person> getPeople();
+  List<Person> getPeople();
 
   List<Vertex> getVertices();
 
-//  Vertex getNWVertex();
-//
-//  Vertex getNEVertex();
-//
-//  Vertex getSEVertex();
-//
-//  Vertex getSWVertex();
+  double getLatitudeLowerBound();
+
+  double getLatitudeUpperBound();
+
+  double getLongitudeLowerBound();
+
+  double getLongitudeUpperBound();
 
   int getId();
 
