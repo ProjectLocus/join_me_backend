@@ -48,5 +48,4 @@ public class InvitationController {
     return invitationRepository.findById(invitationId).get();
   }
 
-
 }

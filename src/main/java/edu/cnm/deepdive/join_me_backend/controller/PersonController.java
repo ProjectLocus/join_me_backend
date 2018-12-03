@@ -83,14 +83,10 @@ public class PersonController {
     personRepository.deleteById(personId);
   }
 
-
-  //todo: make get mapping to return all invitations attached to a personId
-//  @GetMapping("{personId}/invitations")
-//  public List<Invitation> vertexList (@PathVariable("personId") int personId) {
-//    return get(personId).;
-//  }
-
-  //todo: make a delete mapping to delete all invitations attached to a personId
+  @GetMapping(value = "{personId}/invitations}", produces = MediaType.APPLICATION_JSON_VALUE)
+  public List<Invitation> getAllInvitationsPerPerson(@PathVariable ("personId") int personId){
+    return personRepository.findById(personId).get().getInvitations();
+  }
 
 
 }
