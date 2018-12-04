@@ -4,6 +4,7 @@ import edu.cnm.deepdive.join_me_backend.model.dao.InvitationRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.PersonRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.SquareRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.VertexRepository;
+import edu.cnm.deepdive.join_me_backend.model.entity.Person;
 import edu.cnm.deepdive.join_me_backend.model.entity.Square;
 import edu.cnm.deepdive.join_me_backend.model.entity.Vertex;
 import java.util.LinkedList;
@@ -51,6 +52,10 @@ public class SquareController {
   private PersonRepository personRepository;
   private SquareRepository squareRepository;
   private VertexRepository vertexRepository;
+  private double longitudeUpperBound = -106.6493000;
+  private double longitudeLowerBound = -106.6497000;
+  private double latitudeUpperBound = 35.0862000;
+  private double latitudeLowerBound = 35.0858000;
 
   @Autowired
   public SquareController(InvitationRepository invitationRepository,
@@ -73,130 +78,130 @@ public class SquareController {
     List<Square> grid = new LinkedList<>();
     Square sq1 = new Square();
     sq1.setId(BOX_1_ID);
-    sq1.setLatitudeLowerBound(35.0858000);
-    sq1.setLatitudeUpperBound(35.0859000);
-    sq1.setLongitudeLowerBound(-106.6497000);
-    sq1.setLongitudeUpperBound(-106.6496000);
+    sq1.setLatitudeLowerBound(latitudeLowerBound);
+    sq1.setLatitudeUpperBound(PersonController.FIRST_LAT_LINE);
+    sq1.setLongitudeLowerBound(longitudeLowerBound);
+    sq1.setLongitudeUpperBound(PersonController.THIRD_LONG_LINE);
     grid.add(sq1);
 
     Square sq2 = new Square();
     sq2.setId(BOX_2_ID);
-    sq2.setLatitudeLowerBound(35.0858000);
-    sq2.setLatitudeUpperBound(35.0859000);
-    sq2.setLongitudeLowerBound(-106.6496000);
-    sq2.setLongitudeUpperBound(-106.6495000);
+    sq2.setLatitudeLowerBound(latitudeLowerBound);
+    sq2.setLatitudeUpperBound(PersonController.FIRST_LAT_LINE);
+    sq2.setLongitudeLowerBound(PersonController.THIRD_LONG_LINE);
+    sq2.setLongitudeUpperBound(PersonController.SECOND_LONG_LINE);
     grid.add(sq2);
 
     Square sq3 = new Square();
     sq3.setId(BOX_3_ID);
-    sq3.setLatitudeLowerBound(35.0858000);
-    sq3.setLatitudeUpperBound(35.0859000);
-    sq3.setLongitudeLowerBound(-106.6495000);
-    sq3.setLongitudeUpperBound(-106.6494000);
+    sq3.setLatitudeLowerBound(latitudeLowerBound);
+    sq3.setLatitudeUpperBound(PersonController.FIRST_LAT_LINE);
+    sq3.setLongitudeLowerBound(PersonController.SECOND_LONG_LINE);
+    sq3.setLongitudeUpperBound(PersonController.FIRST_LONG_LINE);
     grid.add(sq3);
 
     Square sq4 = new Square();
     sq4.setId(BOX_4_ID);
-    sq4.setLatitudeLowerBound(35.0858000);
-    sq4.setLatitudeUpperBound(35.0859000);
-    sq4.setLongitudeLowerBound(-106.6494000);
-    sq4.setLongitudeUpperBound(-106.6493000);
+    sq4.setLatitudeLowerBound(latitudeLowerBound);
+    sq4.setLatitudeUpperBound(PersonController.FIRST_LAT_LINE);
+    sq4.setLongitudeLowerBound(PersonController.FIRST_LONG_LINE);
+    sq4.setLongitudeUpperBound(longitudeUpperBound);
     grid.add(sq4);
 
     Square sq5 = new Square();
     sq5.setId(BOX_5_ID);
-    sq5.setLatitudeLowerBound(35.0859000);
-    sq5.setLatitudeUpperBound(35.0860000);
-    sq5.setLongitudeLowerBound(-106.6497000);
-    sq5.setLongitudeUpperBound(-106.6496000);
+    sq5.setLatitudeLowerBound(PersonController.FIRST_LAT_LINE);
+    sq5.setLatitudeUpperBound(PersonController.SECOND_LAT_LINE);
+    sq5.setLongitudeLowerBound(longitudeLowerBound);
+    sq5.setLongitudeUpperBound(PersonController.THIRD_LONG_LINE);
     grid.add(sq5);
 
     Square sq6 = new Square();
     sq6.setId(BOX_6_ID);
-    sq6.setLatitudeLowerBound(35.0859000);
-    sq6.setLatitudeUpperBound(35.0860000);
-    sq6.setLongitudeLowerBound(-106.6496000);
-    sq6.setLongitudeUpperBound(-106.6495000);
+    sq6.setLatitudeLowerBound(PersonController.FIRST_LAT_LINE);
+    sq6.setLatitudeUpperBound(PersonController.SECOND_LAT_LINE);
+    sq6.setLongitudeLowerBound(PersonController.THIRD_LONG_LINE);
+    sq6.setLongitudeUpperBound(PersonController.SECOND_LONG_LINE);
     grid.add(sq6);
 
     Square sq7 = new Square();
     sq7.setId(BOX_7_ID);
-    sq7.setLatitudeLowerBound(35.0859000);
-    sq7.setLatitudeUpperBound(35.0860000);
-    sq7.setLongitudeLowerBound(-106.6495000);
-    sq7.setLongitudeUpperBound(-106.6494000);
+    sq7.setLatitudeLowerBound(PersonController.FIRST_LAT_LINE);
+    sq7.setLatitudeUpperBound(PersonController.SECOND_LAT_LINE);
+    sq7.setLongitudeLowerBound(PersonController.SECOND_LONG_LINE);
+    sq7.setLongitudeUpperBound(PersonController.FIRST_LONG_LINE);
     grid.add(sq7);
 
     Square sq8 = new Square();
     sq8.setId(BOX_8_ID);
-    sq8.setLatitudeLowerBound(35.0859000);
-    sq8.setLatitudeUpperBound(35.0860000);
-    sq8.setLongitudeLowerBound(-106.6494000);
-    sq8.setLongitudeUpperBound(-106.6493000);
+    sq8.setLatitudeLowerBound(PersonController.FIRST_LAT_LINE);
+    sq8.setLatitudeUpperBound(PersonController.SECOND_LAT_LINE);
+    sq8.setLongitudeLowerBound(PersonController.FIRST_LONG_LINE);
+    sq8.setLongitudeUpperBound(longitudeUpperBound);
     grid.add(sq8);
 
     Square sq9 = new Square();
     sq9.setId(BOX_9_ID);
-    sq9.setLatitudeLowerBound(35.0860000);
-    sq9.setLatitudeUpperBound(35.0861000);
-    sq9.setLongitudeLowerBound(-106.6497000);
-    sq9.setLongitudeUpperBound(-106.6496000);
+    sq9.setLatitudeLowerBound(PersonController.SECOND_LAT_LINE);
+    sq9.setLatitudeUpperBound(PersonController.THIRD_LAT_LINE);
+    sq9.setLongitudeLowerBound(longitudeLowerBound);
+    sq9.setLongitudeUpperBound(PersonController.THIRD_LONG_LINE);
     grid.add(sq9);
 
     Square sq10 = new Square();
     sq10.setId(BOX_10_ID);
-    sq10.setLatitudeLowerBound(35.0860000);
-    sq10.setLatitudeUpperBound(35.0861000);
-    sq10.setLongitudeLowerBound(-106.6496000);
-    sq10.setLongitudeUpperBound(-106.6495000);
+    sq10.setLatitudeLowerBound(PersonController.SECOND_LAT_LINE);
+    sq10.setLatitudeUpperBound(PersonController.THIRD_LAT_LINE);
+    sq10.setLongitudeLowerBound(PersonController.THIRD_LONG_LINE);
+    sq10.setLongitudeUpperBound(PersonController.SECOND_LONG_LINE);
     grid.add(sq10);
 
     Square sq11 = new Square();
     sq11.setId(BOX_11_ID);
-    sq11.setLatitudeLowerBound(35.0860000);
-    sq11.setLatitudeUpperBound(35.0861000);
-    sq11.setLongitudeLowerBound(-106.6495000);
-    sq11.setLongitudeUpperBound(-106.6494000);
+    sq11.setLatitudeLowerBound(PersonController.SECOND_LAT_LINE);
+    sq11.setLatitudeUpperBound(PersonController.THIRD_LAT_LINE);
+    sq11.setLongitudeLowerBound(PersonController.SECOND_LONG_LINE);
+    sq11.setLongitudeUpperBound(PersonController.FIRST_LONG_LINE);
     grid.add(sq11);
 
     Square sq12 = new Square();
     sq12.setId(BOX_12_ID);
-    sq12.setLatitudeLowerBound(35.0860000);
-    sq12.setLatitudeUpperBound(35.0861000);
-    sq12.setLongitudeLowerBound(-106.6494000);
-    sq12.setLongitudeUpperBound(-106.6493000);
+    sq12.setLatitudeLowerBound(PersonController.SECOND_LAT_LINE);
+    sq12.setLatitudeUpperBound(PersonController.THIRD_LAT_LINE);
+    sq12.setLongitudeLowerBound(PersonController.FIRST_LONG_LINE);
+    sq12.setLongitudeUpperBound(longitudeUpperBound);
     grid.add(sq12);
 
     Square sq13 = new Square();
     sq13.setId(BOX_13_ID);
-    sq13.setLatitudeLowerBound(35.0861000);
-    sq13.setLatitudeUpperBound(35.0862000);
-    sq13.setLongitudeLowerBound(-106.6497000);
-    sq13.setLongitudeUpperBound(-106.6496000);
+    sq13.setLatitudeLowerBound(PersonController.THIRD_LAT_LINE);
+    sq13.setLatitudeUpperBound(latitudeUpperBound);
+    sq13.setLongitudeLowerBound(longitudeLowerBound);
+    sq13.setLongitudeUpperBound(PersonController.THIRD_LONG_LINE);
     grid.add(sq13);
 
     Square sq14 = new Square();
     sq14.setId(BOX_14_ID);
-    sq14.setLatitudeLowerBound(35.0861000);
-    sq14.setLatitudeUpperBound(35.0862000);
-    sq14.setLongitudeLowerBound(-106.6496000);
-    sq14.setLongitudeUpperBound(-106.6495000);
+    sq14.setLatitudeLowerBound(PersonController.THIRD_LAT_LINE);
+    sq14.setLatitudeUpperBound(latitudeUpperBound);
+    sq14.setLongitudeLowerBound(PersonController.THIRD_LONG_LINE);
+    sq14.setLongitudeUpperBound(PersonController.SECOND_LONG_LINE);
     grid.add(sq14);
 
     Square sq15 = new Square();
     sq15.setId(BOX_15_ID);
-    sq15.setLatitudeLowerBound(35.0861000);
-    sq15.setLatitudeUpperBound(35.0862000);
-    sq15.setLongitudeLowerBound(-106.6495000);
-    sq15.setLongitudeUpperBound(-106.6494000);
+    sq15.setLatitudeLowerBound(PersonController.THIRD_LAT_LINE);
+    sq15.setLatitudeUpperBound(latitudeUpperBound);
+    sq15.setLongitudeLowerBound(PersonController.SECOND_LONG_LINE);
+    sq15.setLongitudeUpperBound(PersonController.FIRST_LONG_LINE);
     grid.add(sq15);
 
     Square sq16 = new Square();
     sq16.setId(BOX_16_ID);
-    sq16.setLatitudeLowerBound(35.0861000);
-    sq16.setLatitudeUpperBound(35.0862000);
-    sq16.setLongitudeLowerBound(-106.6494000);
-    sq16.setLongitudeUpperBound(-106.6493000);
+    sq16.setLatitudeLowerBound(PersonController.THIRD_LAT_LINE);
+    sq16.setLatitudeUpperBound(latitudeUpperBound);
+    sq16.setLongitudeLowerBound(PersonController.FIRST_LONG_LINE);
+    sq16.setLongitudeUpperBound(longitudeUpperBound);
     grid.add(sq16);
 
     squareRepository.saveAll(grid);
