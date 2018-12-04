@@ -52,6 +52,9 @@ public class Invitation implements BaseInvitation {
   @Column(name = "will_attend")
   private boolean willAttend;
 
+  @Column(name = "degrees_remaining")
+  private int degreesRemaining;
+
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "invitations",
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 //  @OrderBy(value = "person_id")
@@ -114,5 +117,14 @@ public class Invitation implements BaseInvitation {
 
   public void setWillAttend(boolean willAttend) {
     this.willAttend = willAttend;
+  }
+
+  @Override
+  public int getDegreesRemaining() {
+    return degreesRemaining;
+  }
+
+  public void setDegreesRemaining(int degreesRemaining) {
+    this.degreesRemaining = degreesRemaining;
   }
 }

@@ -61,6 +61,8 @@ public class Person implements BasePerson {
 
   private double longitude;
 
+  private long currentSquareId;
+
   @Column(name = "display_name")
   private String displayName;
 
@@ -157,5 +159,14 @@ public class Person implements BasePerson {
   public void setInvitations(
       List<Invitation> invitations) {
     this.invitations = invitations;
+  }
+
+  @Override
+  public long getCurrentSquareId() {
+    return currentSquareId;
+  }
+
+  public void setCurrentSquareId(long currentSquareId) {
+    this.currentSquareId = currentSquareId;
   }
 }

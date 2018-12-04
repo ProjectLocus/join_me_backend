@@ -19,4 +19,6 @@ public interface BaseInvitation {
 
   boolean getWillAttend();
 
+  int getDegreesRemaining();
+
 }
