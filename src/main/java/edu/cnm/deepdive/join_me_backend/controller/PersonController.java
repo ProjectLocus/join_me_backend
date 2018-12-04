@@ -8,14 +8,11 @@ import edu.cnm.deepdive.join_me_backend.model.dao.VertexRepository;
 import edu.cnm.deepdive.join_me_backend.model.entity.Invitation;
 import edu.cnm.deepdive.join_me_backend.model.entity.Person;
 import edu.cnm.deepdive.join_me_backend.model.entity.Square;
-import edu.cnm.deepdive.join_me_backend.model.entity.Vertex;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.ExposesResourceFor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -37,12 +33,12 @@ public class PersonController {
   private PersonRepository personRepository;
   private SquareRepository squareRepository;
   private VertexRepository vertexRepository;
-  private double firstLatLine = 35.0859000;
-  private double secondLatLine = 35.0860000;
-  private double thirdLatLine = 35.0861000;
-  private double firstLongLine = -106.6494000;
-  private double secondLongLine = -106.6495000;
-  private double thirdLongLine = -106.6496000;
+  public static double FIRST_LAT_LINE = 35.0859000;
+  public static double SECOND_LAT_LINE = 35.0860000;
+  public static double THIRD_LAT_LINE = 35.0861000;
+  public static double FIRST_LONG_LINE = -106.6494000;
+  public static double SECOND_LONG_LINE = -106.6495000;
+  public static double THIRD_LONG_LINE = -106.6496000;
 
   @Autowired
   public PersonController(
@@ -199,22 +195,22 @@ public class PersonController {
     int squareInt = 1;
     double latitude = requesterUser.getLatitude();
     double longitude = requesterUser.getLongitude();
-    if(latitude< firstLatLine){
+    if(latitude< FIRST_LAT_LINE){
       row = 0;
     }else {
-      if(latitude< secondLatLine){
+      if(latitude< SECOND_LAT_LINE){
         row = 1;
-      }else if(latitude< thirdLatLine){
+      }else if(latitude< THIRD_LAT_LINE){
         row = 2;
       }else{
         row = 3;
       }
     }
-    if(longitude> firstLongLine){
+    if(longitude> FIRST_LONG_LINE){
       col = 4;
-    }else if(longitude> secondLongLine){
+    }else if(longitude> SECOND_LONG_LINE){
       col = 3;
-    }else if(longitude> thirdLongLine){
+    }else if(longitude> THIRD_LONG_LINE){
       col = 2;
     }else{
       col = 1;
@@ -223,148 +219,148 @@ public class PersonController {
 
     switch(squareInt){
       case 1:
-        requesterUser.setCurrentSquareId(100001L);
-        requesterUser.setClosestVertex(vertexRepository.findById(1001L).get());
+        requesterUser.setCurrentSquareId(SquareController.BOX_1_ID);
+        requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_1_ID).get());
         break;
       case 2:
-        requesterUser.setCurrentSquareId(200002L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_2_ID);
         if(isLeftOfMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-          requesterUser.setClosestVertex(vertexRepository.findById(1001L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_1_ID).get());
         }else{
-          requesterUser.setClosestVertex(vertexRepository.findById(2002L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_2_ID).get());
         }
         break;
       case 3:
-        requesterUser.setCurrentSquareId(300003L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_3_ID);
         if(isLeftOfMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-          requesterUser.setClosestVertex(vertexRepository.findById(2002L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_2_ID).get());
         }else{
-          requesterUser.setClosestVertex(vertexRepository.findById(3003L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_3_ID).get());
         }
         break;
       case 4:
-        requesterUser.setCurrentSquareId(400004L);
-        requesterUser.setClosestVertex(vertexRepository.findById(3003L).get());
+        requesterUser.setCurrentSquareId(SquareController.BOX_4_ID);
+        requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_3_ID).get());
         break;
       case 5:
-        requesterUser.setCurrentSquareId(500005L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_5_ID);
         if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-          requesterUser.setClosestVertex(vertexRepository.findById(4004L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_4_ID).get());
         }else{
-          requesterUser.setClosestVertex(vertexRepository.findById(1001L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_1_ID).get());
         }
         break;
       case 6:
-        requesterUser.setCurrentSquareId(600006L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_6_ID);
         if(isLeftOfMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
           if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-            requesterUser.setClosestVertex(vertexRepository.findById(4004L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_4_ID).get());
           }else{
-            requesterUser.setClosestVertex(vertexRepository.findById(1001L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_1_ID).get());
           }
         }else{
           if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-            requesterUser.setClosestVertex(vertexRepository.findById(5005L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_5_ID).get());
           }else{
-            requesterUser.setClosestVertex(vertexRepository.findById(2002L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_2_ID).get());
           }
         }
         break;
       case 7:
-        requesterUser.setCurrentSquareId(700007L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_7_ID);
         if(isLeftOfMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
           if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-            requesterUser.setClosestVertex(vertexRepository.findById(5005L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_5_ID).get());
           }else{
-            requesterUser.setClosestVertex(vertexRepository.findById(2002L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_2_ID).get());
           }
         }else{
           if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-            requesterUser.setClosestVertex(vertexRepository.findById(6006L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_6_ID).get());
           }else{
-            requesterUser.setClosestVertex(vertexRepository.findById(3003L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_3_ID).get());
           }
         }
         break;
       case 8:
-        requesterUser.setCurrentSquareId(800008L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_8_ID);
         if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-          requesterUser.setClosestVertex(vertexRepository.findById(6006L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_6_ID).get());
         }else{
-          requesterUser.setClosestVertex(vertexRepository.findById(3003L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_3_ID).get());
         }
         break;
       case 9:
-        requesterUser.setCurrentSquareId(900009L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_9_ID);
         if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-          requesterUser.setClosestVertex(vertexRepository.findById(7007L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_7_ID).get());
         }else{
-          requesterUser.setClosestVertex(vertexRepository.findById(4004L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_4_ID).get());
         }
         break;
       case 10:
-        requesterUser.setCurrentSquareId(10000010L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_10_ID);
         if(isLeftOfMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
           if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-            requesterUser.setClosestVertex(vertexRepository.findById(7007L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_7_ID).get());
           }else{
-            requesterUser.setClosestVertex(vertexRepository.findById(4004L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_4_ID).get());
           }
         }else{
           if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-            requesterUser.setClosestVertex(vertexRepository.findById(8008L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_8_ID).get());
           }else{
-            requesterUser.setClosestVertex(vertexRepository.findById(5005L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_5_ID).get());
           }
         }
         break;
       case 11:
-        requesterUser.setCurrentSquareId(11000011L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_11_ID);
         if(isLeftOfMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
           if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-            requesterUser.setClosestVertex(vertexRepository.findById(8008L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_8_ID).get());
           }else{
-            requesterUser.setClosestVertex(vertexRepository.findById(5005L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_5_ID).get());
           }
         }else{
           if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-            requesterUser.setClosestVertex(vertexRepository.findById(9009L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_9_ID).get());
           }else{
-            requesterUser.setClosestVertex(vertexRepository.findById(6006L).get());
+            requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_6_ID).get());
           }
         }
         break;
       case 12:
-        requesterUser.setCurrentSquareId(12000012L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_12_ID);
         if(isAboveMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-          requesterUser.setClosestVertex(vertexRepository.findById(9009L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_9_ID).get());
         }else{
-          requesterUser.setClosestVertex(vertexRepository.findById(6006L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_6_ID).get());
         }
         break;
       case 13:
-        requesterUser.setCurrentSquareId(13000013L);
-        requesterUser.setClosestVertex(vertexRepository.findById(2002L).get());
+        requesterUser.setCurrentSquareId(SquareController.BOX_13_ID);
+        requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_2_ID).get());
         break;
       case 14:
-        requesterUser.setCurrentSquareId(14000014L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_14_ID);
         if(isLeftOfMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-          requesterUser.setClosestVertex(vertexRepository.findById(7007L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_7_ID).get());
         }else{
-          requesterUser.setClosestVertex(vertexRepository.findById(8008L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_8_ID).get());
         }
         break;
       case 15:
-        requesterUser.setCurrentSquareId(15000015L);
+        requesterUser.setCurrentSquareId(SquareController.BOX_15_ID);
         if(isLeftOfMid(requesterUser, squareRepository.findById(requesterUser.getCurrentSquareId()).get())){
-          requesterUser.setClosestVertex(vertexRepository.findById(8008L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_8_ID).get());
         }else{
-          requesterUser.setClosestVertex(vertexRepository.findById(9009L).get());
+          requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_9_ID).get());
         }
         break;
       case 16:
-        requesterUser.setCurrentSquareId(16000016L);
-        requesterUser.setClosestVertex(vertexRepository.findById(9009L).get());
+        requesterUser.setCurrentSquareId(SquareController.BOX_16_ID);
+        requesterUser.setClosestVertex(vertexRepository.findById(VertexController.VERTEX_9_ID).get());
         break;
     }
   }

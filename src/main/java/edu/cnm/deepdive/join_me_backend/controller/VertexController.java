@@ -30,6 +30,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/vertices")
 public class VertexController {
 
+  public static final long VERTEX_1_ID =1001L;
+  public static final long VERTEX_2_ID =2002L;
+  public static final long VERTEX_3_ID =3003L;
+  public static final long VERTEX_4_ID =4004L;
+  public static final long VERTEX_5_ID =5005L;
+  public static final long VERTEX_6_ID =6006L;
+  public static final long VERTEX_7_ID =7007L;
+  public static final long VERTEX_8_ID =8008L;
+  public static final long VERTEX_9_ID =9009L;
+
   private InvitationRepository invitationRepository;
   private PersonRepository personRepository;
   private SquareRepository squareRepository;
@@ -61,7 +71,7 @@ public class VertexController {
       Vertex v1 = new Vertex();
       v1.setLatitude(35.0859000);
       v1.setLongitude(-106.6496000);
-      v1.setId(1001L);
+      v1.setId(VERTEX_1_ID);
       adjacentSquares.add(squareRepository.findById(100001L).get());
       adjacentSquares.add(squareRepository.findById(200002L).get());
       adjacentSquares.add(squareRepository.findById(500005L).get());
@@ -73,7 +83,7 @@ public class VertexController {
       Vertex v2 = new Vertex();
       v2.setLatitude(35.0859000);
       v2.setLongitude(-106.6495000);
-      v2.setId(2002L);
+      v2.setId(VERTEX_2_ID);
       adjacentSquares.add(squareRepository.findById(300003L).get());
       adjacentSquares.add(squareRepository.findById(200002L).get());
       adjacentSquares.add(squareRepository.findById(700007L).get());
@@ -85,7 +95,7 @@ public class VertexController {
       Vertex v3 = new Vertex();
       v3.setLatitude(35.0859000);
       v3.setLongitude(-106.6494000);
-      v3.setId(3003L);
+      v3.setId(VERTEX_3_ID);
       adjacentSquares.add(squareRepository.findById(300003L).get());
       adjacentSquares.add(squareRepository.findById(400004L).get());
       adjacentSquares.add(squareRepository.findById(700007L).get());
@@ -97,7 +107,7 @@ public class VertexController {
       Vertex v4 = new Vertex();
       v4.setLatitude(35.0860000);
       v4.setLongitude(-106.6496000);
-      v4.setId(4004L);
+      v4.setId(VERTEX_4_ID);
       adjacentSquares.add(squareRepository.findById(500005L).get());
       adjacentSquares.add(squareRepository.findById(600006L).get());
       adjacentSquares.add(squareRepository.findById(900009L).get());
@@ -109,7 +119,7 @@ public class VertexController {
       Vertex v5 = new Vertex();
       v5.setLatitude(35.0860000);
       v5.setLongitude(-106.6495000);
-      v5.setId(5005L);
+      v5.setId(VERTEX_5_ID);
       adjacentSquares.add(squareRepository.findById(700007L).get());
       adjacentSquares.add(squareRepository.findById(600006L).get());
       adjacentSquares.add(squareRepository.findById(11000011L).get());
@@ -121,7 +131,7 @@ public class VertexController {
       Vertex v6 = new Vertex();
       v6.setLatitude(35.0860000);
       v6.setLongitude(-106.6494000);
-      v6.setId(6006L);
+      v6.setId(VERTEX_6_ID);
       adjacentSquares.add(squareRepository.findById(700007L).get());
       adjacentSquares.add(squareRepository.findById(800008L).get());
       adjacentSquares.add(squareRepository.findById(11000011L).get());
@@ -133,7 +143,7 @@ public class VertexController {
       Vertex v7 = new Vertex();
       v7.setLatitude(35.0861000);
       v7.setLongitude(-106.6496000);
-      v7.setId(7007L);
+      v7.setId(VERTEX_7_ID);
       adjacentSquares.add(squareRepository.findById(900009L).get());
       adjacentSquares.add(squareRepository.findById(10000010L).get());
       adjacentSquares.add(squareRepository.findById(13000013L).get());
@@ -145,7 +155,7 @@ public class VertexController {
       Vertex v8 = new Vertex();
       v8.setLatitude(35.0861000);
       v8.setLongitude(-106.6495000);
-      v8.setId(8008L);
+      v8.setId(VERTEX_8_ID);
       adjacentSquares.add(squareRepository.findById(11000011L).get());
       adjacentSquares.add(squareRepository.findById(10000010L).get());
       adjacentSquares.add(squareRepository.findById(15000015L).get());
@@ -157,7 +167,7 @@ public class VertexController {
       Vertex v9 = new Vertex();
       v9.setLatitude(35.0861000);
       v9.setLongitude(-106.6494000);
-      v9.setId(9009L);
+      v9.setId(VERTEX_9_ID);
       adjacentSquares.add(squareRepository.findById(11000011L).get());
       adjacentSquares.add(squareRepository.findById(12000012L).get());
       adjacentSquares.add(squareRepository.findById(15000015L).get());
