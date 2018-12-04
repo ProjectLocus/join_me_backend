@@ -30,6 +30,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/squares")
 public class SquareController {
 
+  public static final long BOX_1_ID =100001L;
+  public static final long BOX_2_ID =200002L;
+  public static final long BOX_3_ID =300003L;
+  public static final long BOX_4_ID =400004L;
+  public static final long BOX_5_ID =500005L;
+  public static final long BOX_6_ID =600006L;
+  public static final long BOX_7_ID =700007L;
+  public static final long BOX_8_ID =800008L;
+  public static final long BOX_9_ID =900009L;
+  public static final long BOX_10_ID =10000010L;
+  public static final long BOX_11_ID =11000011L;
+  public static final long BOX_12_ID =12000012L;
+  public static final long BOX_13_ID =13000013L;
+  public static final long BOX_14_ID =14000014L;
+  public static final long BOX_15_ID =15000015L;
+  public static final long BOX_16_ID =16000016L;
+
   private InvitationRepository invitationRepository;
   private PersonRepository personRepository;
   private SquareRepository squareRepository;
@@ -55,7 +72,7 @@ public class SquareController {
   public ResponseEntity<List<Square>> post() {
     List<Square> grid = new LinkedList<>();
     Square sq1 = new Square();
-    sq1.setId(100001L);
+    sq1.setId(BOX_1_ID);
     sq1.setLatitudeLowerBound(35.0858000);
     sq1.setLatitudeUpperBound(35.0859000);
     sq1.setLongitudeLowerBound(-106.6497000);
@@ -63,7 +80,7 @@ public class SquareController {
     grid.add(sq1);
 
     Square sq2 = new Square();
-    sq2.setId(200002L);
+    sq2.setId(BOX_2_ID);
     sq2.setLatitudeLowerBound(35.0858000);
     sq2.setLatitudeUpperBound(35.0859000);
     sq2.setLongitudeLowerBound(-106.6496000);
@@ -71,7 +88,7 @@ public class SquareController {
     grid.add(sq2);
 
     Square sq3 = new Square();
-    sq3.setId(300003L);
+    sq3.setId(BOX_3_ID);
     sq3.setLatitudeLowerBound(35.0858000);
     sq3.setLatitudeUpperBound(35.0859000);
     sq3.setLongitudeLowerBound(-106.6495000);
@@ -79,7 +96,7 @@ public class SquareController {
     grid.add(sq3);
 
     Square sq4 = new Square();
-    sq4.setId(400004L);
+    sq4.setId(BOX_4_ID);
     sq4.setLatitudeLowerBound(35.0858000);
     sq4.setLatitudeUpperBound(35.0859000);
     sq4.setLongitudeLowerBound(-106.6494000);
@@ -87,7 +104,7 @@ public class SquareController {
     grid.add(sq4);
 
     Square sq5 = new Square();
-    sq5.setId(500005L);
+    sq5.setId(BOX_5_ID);
     sq5.setLatitudeLowerBound(35.0859000);
     sq5.setLatitudeUpperBound(35.0860000);
     sq5.setLongitudeLowerBound(-106.6497000);
@@ -95,7 +112,7 @@ public class SquareController {
     grid.add(sq5);
 
     Square sq6 = new Square();
-    sq6.setId(600006L);
+    sq6.setId(BOX_6_ID);
     sq6.setLatitudeLowerBound(35.0859000);
     sq6.setLatitudeUpperBound(35.0860000);
     sq6.setLongitudeLowerBound(-106.6496000);
@@ -103,7 +120,7 @@ public class SquareController {
     grid.add(sq6);
 
     Square sq7 = new Square();
-    sq7.setId(700007L);
+    sq7.setId(BOX_7_ID);
     sq7.setLatitudeLowerBound(35.0859000);
     sq7.setLatitudeUpperBound(35.0860000);
     sq7.setLongitudeLowerBound(-106.6495000);
@@ -111,7 +128,7 @@ public class SquareController {
     grid.add(sq7);
 
     Square sq8 = new Square();
-    sq8.setId(800008L);
+    sq8.setId(BOX_8_ID);
     sq8.setLatitudeLowerBound(35.0859000);
     sq8.setLatitudeUpperBound(35.0860000);
     sq8.setLongitudeLowerBound(-106.6494000);
@@ -119,7 +136,7 @@ public class SquareController {
     grid.add(sq8);
 
     Square sq9 = new Square();
-    sq9.setId(900009L);
+    sq9.setId(BOX_9_ID);
     sq9.setLatitudeLowerBound(35.0860000);
     sq9.setLatitudeUpperBound(35.0861000);
     sq9.setLongitudeLowerBound(-106.6497000);
@@ -127,7 +144,7 @@ public class SquareController {
     grid.add(sq9);
 
     Square sq10 = new Square();
-    sq10.setId(10000010L);
+    sq10.setId(BOX_10_ID);
     sq10.setLatitudeLowerBound(35.0860000);
     sq10.setLatitudeUpperBound(35.0861000);
     sq10.setLongitudeLowerBound(-106.6496000);
@@ -135,7 +152,7 @@ public class SquareController {
     grid.add(sq10);
 
     Square sq11 = new Square();
-    sq11.setId(11000011L);
+    sq11.setId(BOX_11_ID);
     sq11.setLatitudeLowerBound(35.0860000);
     sq11.setLatitudeUpperBound(35.0861000);
     sq11.setLongitudeLowerBound(-106.6495000);
@@ -143,7 +160,7 @@ public class SquareController {
     grid.add(sq11);
 
     Square sq12 = new Square();
-    sq12.setId(12000012L);
+    sq12.setId(BOX_12_ID);
     sq12.setLatitudeLowerBound(35.0860000);
     sq12.setLatitudeUpperBound(35.0861000);
     sq12.setLongitudeLowerBound(-106.6494000);
@@ -151,7 +168,7 @@ public class SquareController {
     grid.add(sq12);
 
     Square sq13 = new Square();
-    sq13.setId(13000013L);
+    sq13.setId(BOX_13_ID);
     sq13.setLatitudeLowerBound(35.0861000);
     sq13.setLatitudeUpperBound(35.0862000);
     sq13.setLongitudeLowerBound(-106.6497000);
@@ -159,7 +176,7 @@ public class SquareController {
     grid.add(sq13);
 
     Square sq14 = new Square();
-    sq14.setId(14000014L);
+    sq14.setId(BOX_14_ID);
     sq14.setLatitudeLowerBound(35.0861000);
     sq14.setLatitudeUpperBound(35.0862000);
     sq14.setLongitudeLowerBound(-106.6496000);
@@ -167,7 +184,7 @@ public class SquareController {
     grid.add(sq14);
 
     Square sq15 = new Square();
-    sq15.setId(15000015L);
+    sq15.setId(BOX_15_ID);
     sq15.setLatitudeLowerBound(35.0861000);
     sq15.setLatitudeUpperBound(35.0862000);
     sq15.setLongitudeLowerBound(-106.6495000);
@@ -175,7 +192,7 @@ public class SquareController {
     grid.add(sq15);
 
     Square sq16 = new Square();
-    sq16.setId(16000016L);
+    sq16.setId(BOX_16_ID);
     sq16.setLatitudeLowerBound(35.0861000);
     sq16.setLatitudeUpperBound(35.0862000);
     sq16.setLongitudeLowerBound(-106.6494000);
@@ -238,9 +255,5 @@ public class SquareController {
   @ExceptionHandler(NoSuchElementException.class)
   public void notFound() {
   }
-
-  //todo: make a get mapping to return all persons attached to the square
-
-  //todo: make a delete mapping to delete a specific person attached to the square
 
 }

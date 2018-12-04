@@ -37,6 +37,12 @@ public class PersonController {
   private PersonRepository personRepository;
   private SquareRepository squareRepository;
   private VertexRepository vertexRepository;
+  private double firstLatLine = 35.0859000;
+  private double secondLatLine = 35.0860000;
+  private double thirdLatLine = 35.0861000;
+  private double firstLongLine = -106.6494000;
+  private double secondLongLine = -106.6495000;
+  private double thirdLongLine = -106.6496000;
 
   @Autowired
   public PersonController(
@@ -193,20 +199,22 @@ public class PersonController {
     int squareInt = 1;
     double latitude = requesterUser.getLatitude();
     double longitude = requesterUser.getLongitude();
-    if(latitude<35.0859000){
+    if(latitude< firstLatLine){
       row = 0;
-    }else if(latitude<35.0860000){
-      row = 1;
-    }else if(latitude<35.0861000){
-      row = 2;
-    }else{
-      row = 3;
+    }else {
+      if(latitude< secondLatLine){
+        row = 1;
+      }else if(latitude< thirdLatLine){
+        row = 2;
+      }else{
+        row = 3;
+      }
     }
-    if(longitude>-106.6494000){
+    if(longitude> firstLongLine){
       col = 4;
-    }else if(longitude>-106.6495000){
+    }else if(longitude> secondLongLine){
       col = 3;
-    }else if(longitude>-106.6496000){
+    }else if(longitude> thirdLongLine){
       col = 2;
     }else{
       col = 1;
