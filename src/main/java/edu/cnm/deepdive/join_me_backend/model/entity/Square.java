@@ -36,7 +36,7 @@ public class Square implements BaseSquare {
 
   @Id
   @Column(name = "square_id", nullable = false, updatable = false, unique = true)
-  private int id;
+  private long id;
 
   private double latitudeLowerBound;
   private double latitudeUpperBound;
@@ -94,7 +94,7 @@ public class Square implements BaseSquare {
   }
 
   @Override
-  public int getId() {
+  public long getId() {
     return id;
   }
 
@@ -127,7 +127,7 @@ public class Square implements BaseSquare {
     this.people = people;
   }
 
-  public void setId(int id) {
+  public void setId(long id) {
     this.id = id;
   }
 }

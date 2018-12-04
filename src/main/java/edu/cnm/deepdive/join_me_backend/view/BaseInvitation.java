@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface BaseInvitation {
 
-  int getId();
+  long getId();
 
   URI getHref();
 
-  int getUserSenderId();
+  long getUserSenderId();
 
-  int getUserReceiverId();
+  long getUserReceiverId();
 
   boolean getWasDelivered();
 

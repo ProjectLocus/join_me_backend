@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BasePerson {
 
-  int getId();
+  long getId();
 
   URI getHref();
 

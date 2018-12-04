@@ -42,7 +42,7 @@ public class Person implements BasePerson {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "person_id", nullable = false, updatable = false)
-  private int id;
+  private long id;
 
   @NonNull
   @ManyToOne(fetch = FetchType.EAGER)
@@ -82,11 +82,11 @@ public class Person implements BasePerson {
 
 
   @Override
-  public int getId() {
+  public long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(long id) {
     this.id = id;
   }
 

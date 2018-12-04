@@ -15,7 +15,7 @@ public interface BaseSquare {
 
   double getLongitudeUpperBound();
 
-  int getId();
+  long getId();
 
   URI getHref();
 

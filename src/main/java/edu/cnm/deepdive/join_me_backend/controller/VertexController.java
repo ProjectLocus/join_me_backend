@@ -61,11 +61,11 @@ public class VertexController {
       Vertex v1 = new Vertex();
       v1.setLatitude(35.0859000);
       v1.setLongitude(-106.6496000);
-      v1.setId(1001);
-      adjacentSquares.add(squareRepository.findById(100001).get());
-      adjacentSquares.add(squareRepository.findById(200002).get());
-      adjacentSquares.add(squareRepository.findById(500005).get());
-      adjacentSquares.add(squareRepository.findById(600006).get());
+      v1.setId(1001L);
+      adjacentSquares.add(squareRepository.findById(100001L).get());
+      adjacentSquares.add(squareRepository.findById(200002L).get());
+      adjacentSquares.add(squareRepository.findById(500005L).get());
+      adjacentSquares.add(squareRepository.findById(600006L).get());
       v1.setSquares(adjacentSquares);
       grid.add(v1);
 
@@ -73,11 +73,11 @@ public class VertexController {
       Vertex v2 = new Vertex();
       v2.setLatitude(35.0859000);
       v2.setLongitude(-106.6495000);
-      v2.setId(2002);
-      adjacentSquares.add(squareRepository.findById(300003).get());
-      adjacentSquares.add(squareRepository.findById(200002).get());
-      adjacentSquares.add(squareRepository.findById(700007).get());
-      adjacentSquares.add(squareRepository.findById(600006).get());
+      v2.setId(2002L);
+      adjacentSquares.add(squareRepository.findById(300003L).get());
+      adjacentSquares.add(squareRepository.findById(200002L).get());
+      adjacentSquares.add(squareRepository.findById(700007L).get());
+      adjacentSquares.add(squareRepository.findById(600006L).get());
       v2.setSquares(adjacentSquares);
       grid.add(v2);
 
@@ -85,11 +85,11 @@ public class VertexController {
       Vertex v3 = new Vertex();
       v3.setLatitude(35.0859000);
       v3.setLongitude(-106.6494000);
-      v3.setId(3003);
-      adjacentSquares.add(squareRepository.findById(300003).get());
-      adjacentSquares.add(squareRepository.findById(400004).get());
-      adjacentSquares.add(squareRepository.findById(700007).get());
-      adjacentSquares.add(squareRepository.findById(800008).get());
+      v3.setId(3003L);
+      adjacentSquares.add(squareRepository.findById(300003L).get());
+      adjacentSquares.add(squareRepository.findById(400004L).get());
+      adjacentSquares.add(squareRepository.findById(700007L).get());
+      adjacentSquares.add(squareRepository.findById(800008L).get());
       v3.setSquares(adjacentSquares);
       grid.add(v3);
 
@@ -97,11 +97,11 @@ public class VertexController {
       Vertex v4 = new Vertex();
       v4.setLatitude(35.0860000);
       v4.setLongitude(-106.6496000);
-      v4.setId(4004);
-      adjacentSquares.add(squareRepository.findById(500005).get());
-      adjacentSquares.add(squareRepository.findById(600006).get());
-      adjacentSquares.add(squareRepository.findById(900009).get());
-      adjacentSquares.add(squareRepository.findById(10000010).get());
+      v4.setId(4004L);
+      adjacentSquares.add(squareRepository.findById(500005L).get());
+      adjacentSquares.add(squareRepository.findById(600006L).get());
+      adjacentSquares.add(squareRepository.findById(900009L).get());
+      adjacentSquares.add(squareRepository.findById(10000010L).get());
       v4.setSquares(adjacentSquares);
       grid.add(v4);
 
@@ -109,11 +109,11 @@ public class VertexController {
       Vertex v5 = new Vertex();
       v5.setLatitude(35.0860000);
       v5.setLongitude(-106.6495000);
-      v5.setId(5005);
-      adjacentSquares.add(squareRepository.findById(700007).get());
-      adjacentSquares.add(squareRepository.findById(600006).get());
-      adjacentSquares.add(squareRepository.findById(11000011).get());
-      adjacentSquares.add(squareRepository.findById(10000010).get());
+      v5.setId(5005L);
+      adjacentSquares.add(squareRepository.findById(700007L).get());
+      adjacentSquares.add(squareRepository.findById(600006L).get());
+      adjacentSquares.add(squareRepository.findById(11000011L).get());
+      adjacentSquares.add(squareRepository.findById(10000010L).get());
       v5.setSquares(adjacentSquares);
       grid.add(v5);
 
@@ -121,11 +121,11 @@ public class VertexController {
       Vertex v6 = new Vertex();
       v6.setLatitude(35.0860000);
       v6.setLongitude(-106.6494000);
-      v6.setId(6006);
-      adjacentSquares.add(squareRepository.findById(700007).get());
-      adjacentSquares.add(squareRepository.findById(800008).get());
-      adjacentSquares.add(squareRepository.findById(11000011).get());
-      adjacentSquares.add(squareRepository.findById(12000012).get());
+      v6.setId(6006L);
+      adjacentSquares.add(squareRepository.findById(700007L).get());
+      adjacentSquares.add(squareRepository.findById(800008L).get());
+      adjacentSquares.add(squareRepository.findById(11000011L).get());
+      adjacentSquares.add(squareRepository.findById(12000012L).get());
       v6.setSquares(adjacentSquares);
       grid.add(v6);
 
@@ -133,11 +133,11 @@ public class VertexController {
       Vertex v7 = new Vertex();
       v7.setLatitude(35.0861000);
       v7.setLongitude(-106.6496000);
-      v7.setId(7007);
-      adjacentSquares.add(squareRepository.findById(900009).get());
-      adjacentSquares.add(squareRepository.findById(10000010).get());
-      adjacentSquares.add(squareRepository.findById(13000013).get());
-      adjacentSquares.add(squareRepository.findById(14000014).get());
+      v7.setId(7007L);
+      adjacentSquares.add(squareRepository.findById(900009L).get());
+      adjacentSquares.add(squareRepository.findById(10000010L).get());
+      adjacentSquares.add(squareRepository.findById(13000013L).get());
+      adjacentSquares.add(squareRepository.findById(14000014L).get());
       v7.setSquares(adjacentSquares);
       grid.add(v7);
 
@@ -145,11 +145,11 @@ public class VertexController {
       Vertex v8 = new Vertex();
       v8.setLatitude(35.0861000);
       v8.setLongitude(-106.6495000);
-      v8.setId(8008);
-      adjacentSquares.add(squareRepository.findById(11000011).get());
-      adjacentSquares.add(squareRepository.findById(10000010).get());
-      adjacentSquares.add(squareRepository.findById(15000015).get());
-      adjacentSquares.add(squareRepository.findById(14000014).get());
+      v8.setId(8008L);
+      adjacentSquares.add(squareRepository.findById(11000011L).get());
+      adjacentSquares.add(squareRepository.findById(10000010L).get());
+      adjacentSquares.add(squareRepository.findById(15000015L).get());
+      adjacentSquares.add(squareRepository.findById(14000014L).get());
       v8.setSquares(adjacentSquares);
       grid.add(v8);
 
@@ -157,11 +157,11 @@ public class VertexController {
       Vertex v9 = new Vertex();
       v9.setLatitude(35.0861000);
       v9.setLongitude(-106.6494000);
-      v9.setId(9009);
-      adjacentSquares.add(squareRepository.findById(11000011).get());
-      adjacentSquares.add(squareRepository.findById(12000012).get());
-      adjacentSquares.add(squareRepository.findById(15000015).get());
-      adjacentSquares.add(squareRepository.findById(16000016).get());
+      v9.setId(9009L);
+      adjacentSquares.add(squareRepository.findById(11000011L).get());
+      adjacentSquares.add(squareRepository.findById(12000012L).get());
+      adjacentSquares.add(squareRepository.findById(15000015L).get());
+      adjacentSquares.add(squareRepository.findById(16000016L).get());
       v9.setSquares(adjacentSquares);
       grid.add(v9);
       vertexRepository.saveAll(grid);
@@ -173,29 +173,29 @@ public class VertexController {
   }
 
   @GetMapping(value = "{vertexId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Vertex get(@PathVariable("vertexId") int vertexId){
+  public Vertex get(@PathVariable("vertexId") long vertexId){
     return vertexRepository.findById(vertexId).get();
   }
 
   @GetMapping(value = "{vertexId}", produces = MediaType.TEXT_HTML_VALUE)
-  public String getHTML(@PathVariable("vertexId") int vertexId){
+  public String getHTML(@PathVariable("vertexId") long vertexId){
     return "<html><body>" + vertexRepository.findById(vertexId).get().getId() + "</body></html>";
   }
 
   @DeleteMapping(value = "{vertexId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void delete(@PathVariable("vertexId") int vertexId){
+  public void delete(@PathVariable("vertexId") long vertexId){
     vertexRepository.deleteById(vertexId);
   }
 
   @GetMapping(value = "{vertexId}/squares", produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<Square> squareList(@PathVariable("vertexId") int vertexId) {
+  public List<Square> squareList(@PathVariable("vertexId") long vertexId) {
     return get(vertexId).getSquares();
   }
 
   @PostMapping(value = "{vertexId}/squares", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Square> postSquare(@PathVariable("vertexId") int vertexId,
+  public ResponseEntity<Square> postSquare(@PathVariable("vertexId") long vertexId,
       @RequestBody Vertex partialSquare){
     Square square = squareRepository.findById(partialSquare.getId()).get();
     Vertex vertex = get(vertexId);
@@ -206,7 +206,7 @@ public class VertexController {
 
   @DeleteMapping(value = "{vertexId}/squares/{squareId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteSquare(@PathVariable("vertexId") int vertexId, @PathVariable("squareId") int squareId){
+  public void deleteSquare(@PathVariable("vertexId") long vertexId, @PathVariable("squareId") long squareId){
     Vertex vertex = get(vertexId);
     Square square = squareRepository.findById(squareId).get();
     if (vertex.getSquares().remove(square)){

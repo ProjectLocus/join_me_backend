@@ -44,7 +44,7 @@ public class InvitationController {
   }
 
   @GetMapping(value = "{invitationId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Invitation getSingleInvitation(@PathVariable ("invitationId") int invitationId){
+  public Invitation getSingleInvitation(@PathVariable ("invitationId") long invitationId){
     return invitationRepository.findById(invitationId).get();
   }
 

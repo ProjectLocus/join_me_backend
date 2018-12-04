@@ -38,13 +38,13 @@ public class Invitation implements BaseInvitation {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "invitation_id", nullable = false, updatable = false)
-  private int id;
+  private long id;
 
   @Column(name = "user_sender_id")
-  private int userSenderId;
+  private long userSenderId;
 
   @Column(name = "user_receiver_id")
-  private int userReceiverId;
+  private long userReceiverId;
 
   @Column(name = "was_delivered")
   private boolean wasDelivered;
@@ -66,7 +66,7 @@ public class Invitation implements BaseInvitation {
   private void setEntityLinks(EntityLinks entityLinks) {Invitation.entityLinks = entityLinks;}
 
   @Override
-  public int getId() {
+  public long getId() {
     return id;
   }
 
@@ -76,12 +76,12 @@ public class Invitation implements BaseInvitation {
   }
 
   @Override
-  public int getUserSenderId() {
+  public long getUserSenderId() {
     return userSenderId;
   }
 
   @Override
-  public int getUserReceiverId() {
+  public long getUserReceiverId() {
     return userReceiverId;
   }
 
@@ -90,11 +90,11 @@ public class Invitation implements BaseInvitation {
     return people;
   }
 
-  public void setUserSenderId(int userSenderId) {
+  public void setUserSenderId(long userSenderId) {
     this.userSenderId = userSenderId;
   }
 
-  public void setUserReceiverId(int userReceiverId) {
+  public void setUserReceiverId(long userReceiverId) {
     this.userReceiverId = userReceiverId;
   }
 

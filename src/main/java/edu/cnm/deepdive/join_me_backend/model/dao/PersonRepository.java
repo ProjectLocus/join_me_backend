@@ -5,7 +5,7 @@ import edu.cnm.deepdive.join_me_backend.model.entity.Square;
 import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
-public interface PersonRepository extends CrudRepository<Person, Integer> {
+public interface PersonRepository extends CrudRepository<Person, Long> {
 
   List<Person> findAll();
 

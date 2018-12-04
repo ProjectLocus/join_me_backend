@@ -11,7 +11,7 @@ public interface BaseVertex {
 
   double getLongitude();
 
-  int getId();
+  long getId();
 
   URI getHref();
 

@@ -66,12 +66,12 @@ public class PersonController {
   }
 
   @GetMapping(value = "{personId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Person get(@PathVariable("personId") int personId) {
+  public Person get(@PathVariable("personId") long personId) {
     return personRepository.findById(personId).get();
   }
 
   @PutMapping(value = "{personId}")
-  public ResponseEntity<Person> updatePerson(@RequestBody Person person, @PathVariable ("personId") int personId) {
+  public ResponseEntity<Person> updatePerson(@RequestBody Person person, @PathVariable ("personId") long personId) {
     Optional<Person> personOptional = personRepository.findById(personId);
     if (!personOptional.isPresent()){
       return ResponseEntity.notFound().build();
@@ -82,12 +82,12 @@ public class PersonController {
   }
 
   @DeleteMapping(value = "{personId}")
-  public void deletePerson(@PathVariable ("personId") int personId){
+  public void deletePerson(@PathVariable ("personId") long personId){
     personRepository.deleteById(personId);
   }
 
   @GetMapping(value = "{personId}/invitations}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<Invitation> getAllInvitationsPerPerson(@PathVariable ("personId") int personId){
+  public List<Invitation> getAllInvitationsPerPerson(@PathVariable ("personId") long personId){
     Optional<Person> personOptional = personRepository.findById(personId);
     if (personOptional.isPresent()){
       List<Invitation> tempInvites = personOptional.get().getInvitations();
@@ -108,13 +108,13 @@ public class PersonController {
 
   @GetMapping(value = "{personId}/invitations/{invitationId}",
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public Invitation getInvitationPerPerson(@PathVariable ("invitationId") int invitationId){
+  public Invitation getInvitationPerPerson(@PathVariable ("invitationId") long invitationId){
     return invitationRepository.findById(invitationId).get();
   }
 
   @PostMapping(value = "{personId}/invitations", consumes = MediaType.APPLICATION_JSON_VALUE,
   produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Invitation> addInvitation(@PathVariable("personId") int personId,
+  public ResponseEntity<Invitation> addInvitation(@PathVariable("personId") long personId,
       @RequestBody Invitation invitation){
     Optional<Person> personOptional = personRepository.findById(personId);
     if (!personOptional.isPresent()){
@@ -128,7 +128,7 @@ public class PersonController {
   }
 
   @PutMapping(value = "{personId}/invitations/{invitationId}")
-  public ResponseEntity<Invitation>  updateInvitation(@PathVariable("invitationId") int invitationId){
+  public ResponseEntity<Invitation>  updateInvitation(@PathVariable("invitationId") long invitationId){
     Optional<Invitation> invitationOptional = invitationRepository.findById(invitationId);
     if (invitationOptional.isPresent()){
       invitationOptional.get().setWillAttend(true);
@@ -139,7 +139,7 @@ public class PersonController {
   }
 
   @DeleteMapping(value = "{personId}/invitations/{invitationId}")
-  public void deleteInvitation(@PathVariable("invitationId") int invitationId){
+  public void deleteInvitation(@PathVariable("invitationId") long invitationId){
     Optional<Invitation> invitationOptional = invitationRepository.findById(invitationId);
 
     if (invitationOptional.isPresent() ){
@@ -148,7 +148,7 @@ public class PersonController {
   }
 
   @GetMapping(value = "{personId}/people", produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<Person> getPeopleNearby(@PathVariable ("personId") int personId){
+  public List<Person> getPeopleNearby(@PathVariable ("personId") long personId){
     Optional<Person> personOptional = personRepository.findById(personId);
 
     if (personOptional.isPresent() ){

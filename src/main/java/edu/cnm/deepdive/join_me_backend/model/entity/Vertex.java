@@ -34,7 +34,7 @@ public class Vertex implements BaseVertex {
 
   @Id
   @Column(name = "vertex_id", nullable = false, updatable = false, unique = true)
-  private int id;
+  private long id;
 
   @NonNull
   @Column(nullable = false)
@@ -77,11 +77,11 @@ public class Vertex implements BaseVertex {
   }
 
   @Override
-  public int getId() {
+  public long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(long id) {
     this.id = id;
   }
 
