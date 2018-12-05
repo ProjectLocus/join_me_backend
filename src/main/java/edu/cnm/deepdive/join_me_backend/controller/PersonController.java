@@ -11,6 +11,7 @@ import edu.cnm.deepdive.join_me_backend.model.entity.Square;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.MediaType;
@@ -153,6 +154,7 @@ public class PersonController {
 //    }
 //  }
 
+  @Transactional
   @GetMapping(value = "{personId}/people", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Person> getPeopleNearby(@RequestBody Person requesterUser,
@@ -171,18 +173,37 @@ public class PersonController {
     return new LinkedList<>();
   }
 
+//  @PutMapping(value = "{personId}/people", consumes = MediaType.APPLICATION_JSON_VALUE,
+//      produces = MediaType.APPLICATION_JSON_VALUE)
+//  public List<Person> getPeopleNearby(@RequestBody Person requesterUser,
+//      @PathVariable("personId") long personId) {
+//    Optional<Person> personOptional = personRepository.findById(personId);
+//    if (personOptional.isPresent()) {
+//      updateUser(requesterUser, personId);
+//      List<Person> tempPersons = new LinkedList<>();
+//      List<Square> tempSquare = personOptional.get().getClosestVertex().getSquares();
+//      for (Square square :
+//          tempSquare) {
+//        tempPersons.addAll(square.getPeople());
+//      }
+//      return tempPersons;
+//    }
+//    return new LinkedList<>();
+//  }
+
   private void updateUser(Person requesterUser, long personId) {
     requesterUser.setId(personId);
     removeFromSquare(requesterUser);
     updateCurrentSquare(requesterUser);
     addToSquare(requesterUser);
-    personRepository.save(requesterUser);
   }
 
   private void addToSquare(Person requesterUser) {
     if (requesterUser.getCurrentSquareId() != 0) {
-      squareRepository.findById(requesterUser.getCurrentSquareId()).get().getPeople()
-          .add(requesterUser);
+      if(!squareRepository.findById(requesterUser.getCurrentSquareId()).get().getPeople().contains(requesterUser)){
+        squareRepository.findById(requesterUser.getCurrentSquareId()).get().getPeople()
+            .add(requesterUser);
+      }
     }
   }
 
@@ -391,7 +412,7 @@ public class PersonController {
       case 13:
         requesterUser.setCurrentSquareId(SquareController.BOX_13_ID);
         requesterUser
-            .setClosestVertex(vertexRepository.findById(VertexController.VERTEX_2_ID).get());
+            .setClosestVertex(vertexRepository.findById(VertexController.VERTEX_7_ID).get());
         break;
       case 14:
         requesterUser.setCurrentSquareId(SquareController.BOX_14_ID);
@@ -422,7 +443,7 @@ public class PersonController {
         break;
     }
 
-    personRepository.save(requesterUser);
+//    personRepository.save(requesterUser);
   }
 
   private boolean isLeftOfMid(Person person, Square square) {
