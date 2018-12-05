@@ -63,7 +63,7 @@ public class PersonController {
   public ResponseEntity<Person> post(@RequestBody Person person) {
     person.setClosestVertex(vertexRepository.findAll().get(0));
     long personId = personRepository.save(person).getId();
-    updatePerson(person, personId);
+    updateUser(person, personId);
     return ResponseEntity.created(person.getHref()).body(person);
   }
 
