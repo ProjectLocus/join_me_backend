@@ -15,8 +15,6 @@ public interface BasePerson {
 
   double getLongitude();
 
-  long getCurrentSquareId();
-
   String getDisplayName();
 
   String getUserImageLocation();

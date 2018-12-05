@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.cnm.deepdive.join_me_backend.view.BaseInvitation;
 import edu.cnm.deepdive.join_me_backend.view.BasePerson;
+import edu.cnm.deepdive.join_me_backend.view.BaseSquare;
 import edu.cnm.deepdive.join_me_backend.view.BaseVertex;
 import java.net.URI;
 import java.util.LinkedList;
@@ -61,7 +62,10 @@ public class Person implements BasePerson {
 
   private double longitude;
 
-  private long currentSquareId;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "square_id", updatable = true)
+  @OnDelete(action = OnDeleteAction.NO_ACTION)
+  private Square currentSquare;
 
   @Column(name = "display_name")
   private String displayName;
@@ -161,12 +165,12 @@ public class Person implements BasePerson {
     this.invitations = invitations;
   }
 
-  @Override
-  public long getCurrentSquareId() {
-    return currentSquareId;
+  @JsonSerialize(contentAs = BaseSquare.class)
+  public Square getCurrentSquare() {
+    return currentSquare;
   }
 
-  public void setCurrentSquareId(long currentSquareId) {
-    this.currentSquareId = currentSquareId;
+  public void setCurrentSquare(Square currentSquare) {
+    this.currentSquare = currentSquare;
   }
 }

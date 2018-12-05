@@ -21,6 +21,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityLinks;
@@ -43,9 +44,8 @@ public class Square implements BaseSquare {
   private double longitudeLowerBound;
   private double longitudeUpperBound;
 
-  @ElementCollection
+  @OneToMany(fetch = FetchType.LAZY, mappedBy = "currentSquare")
   private List<Person> people = new LinkedList<>();
-
 
 
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "squares",
