@@ -50,7 +50,7 @@ public class Person implements BasePerson {
   @OnDelete(action = OnDeleteAction.NO_ACTION)
   private Vertex closestVertex;
 
-  @ManyToMany(fetch = FetchType.LAZY,
+  @ManyToMany(fetch = FetchType.EAGER,
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @JoinTable(joinColumns = @JoinColumn(name = "person_id"),
       inverseJoinColumns = @JoinColumn(name = "invitation_id"))
