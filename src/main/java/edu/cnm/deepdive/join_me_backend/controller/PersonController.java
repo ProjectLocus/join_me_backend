@@ -11,7 +11,6 @@ import edu.cnm.deepdive.join_me_backend.model.entity.Square;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.ExposesResourceFor;
 import org.springframework.http.MediaType;
@@ -63,7 +62,7 @@ public class PersonController {
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Person> post(@RequestBody Person person) {
     person.setClosestVertex(vertexRepository.findAll().get(0));
-    long personId = personRepository.save(person).getId();
+    long personId = personRepository.save(person).getPersonId();
     updateUser(person, personId);
     return ResponseEntity.created(person.getHref()).body(person);
   }
@@ -80,7 +79,7 @@ public class PersonController {
     if (!personOptional.isPresent()) {
       return ResponseEntity.notFound().build();
     }
-    person.setId(personId);
+    person.setPersonId(personId);
     personRepository.save(person);
     return ResponseEntity.noContent().build();
   }
@@ -191,7 +190,7 @@ public class PersonController {
 //  }
 
   private void updateUser(Person requesterUser, long personId) {
-    requesterUser.setId(personId);
+    requesterUser.setPersonId(personId);
 //    personRepository.save(requesterUser);
     updateCurrentSquare(requesterUser);
   }

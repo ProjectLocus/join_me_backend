@@ -2,7 +2,6 @@ package edu.cnm.deepdive.join_me_backend.model.entity;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.cnm.deepdive.join_me_backend.view.BaseInvitation;
 import edu.cnm.deepdive.join_me_backend.view.BasePerson;
@@ -14,8 +13,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -25,7 +22,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OrderBy;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +39,7 @@ public class Person implements BasePerson {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Column(name = "person_id", nullable = false, updatable = false)
-  private long id;
+  private long personId;
 
   @NonNull
   @ManyToOne(fetch = FetchType.EAGER)
@@ -88,17 +84,17 @@ public class Person implements BasePerson {
 
 
   @Override
-  public long getId() {
-    return id;
+  public long getPersonId() {
+    return personId;
   }
 
-  public void setId(long id) {
-    this.id = id;
+  public void setPersonId(long personId) {
+    this.personId = personId;
   }
 
   @Override
   public URI getHref() {
-    return entityLinks.linkForSingleResource(Square.class, id).toUri();
+    return entityLinks.linkForSingleResource(Square.class, personId).toUri();
   }
 
   @Override
