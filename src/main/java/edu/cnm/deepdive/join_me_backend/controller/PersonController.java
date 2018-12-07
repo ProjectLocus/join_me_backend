@@ -153,7 +153,7 @@ public class PersonController {
 //    }
 //  }
 
-  @GetMapping(value = "{personId}/people", consumes = MediaType.APPLICATION_JSON_VALUE,
+  @PutMapping(value = "{personId}/people", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Person> getPeopleNearby(@RequestBody Person requesterUser,
       @PathVariable("personId") long personId) {
