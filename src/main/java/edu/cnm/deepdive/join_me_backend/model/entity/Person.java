@@ -72,6 +72,9 @@ public class Person implements BasePerson {
   @Column(name = "user_description")
   private String userDescription;
 
+  @Column(name = "google_user_id")
+  private String googleUserId;
+
   @PostConstruct
   private void initEntityLinks(){
     String ignore = entityLinks.toString();
@@ -168,5 +171,14 @@ public class Person implements BasePerson {
 
   public void setCurrentSquare(Square currentSquare) {
     this.currentSquare = currentSquare;
+  }
+
+  @Override
+  public String getGoogleUserId() {
+    return googleUserId;
+  }
+
+  public void setGoogleUserId(String googleUserId) {
+    this.googleUserId = googleUserId;
   }
 }

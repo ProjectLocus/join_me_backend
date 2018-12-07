@@ -21,4 +21,6 @@ public interface BasePerson {
 
   String getUserDescription();
 
+  String getGoogleUserId();
+
 }
