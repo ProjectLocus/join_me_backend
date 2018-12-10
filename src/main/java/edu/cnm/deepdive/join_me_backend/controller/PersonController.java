@@ -95,11 +95,12 @@ public class PersonController {
 
     Optional<Person> personOptional = personRepository.findById(personId);
     if (personOptional.isPresent()) {
-      List<Invitation> tempInvites = personOptional.get().getInvitations();
+      List<Invitation> tempInvites = invitationRepository.findAll();
       List<Invitation> toDeliver = new LinkedList<>();
       for (Invitation invitation :
           tempInvites) {
-        if (!invitation.getWasDelivered()) {
+        if (invitation.getUserReceiverId() == personOptional.get().getPersonId()
+        && !invitation.getWasDelivered()) {
           toDeliver.add(invitation);
           invitation.setWasDelivered(true);
         }

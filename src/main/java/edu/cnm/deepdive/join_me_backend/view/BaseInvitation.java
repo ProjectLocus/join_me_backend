@@ -21,4 +21,15 @@ public interface BaseInvitation {
 
   int getDegreesRemaining();
 
+  String getDate();
+
+
+  String getDescription();
+
+
+  String getTitle();
+
+
+  String getLocation();
+
 }

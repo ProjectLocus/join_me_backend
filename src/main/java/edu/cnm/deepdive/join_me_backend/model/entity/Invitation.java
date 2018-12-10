@@ -55,6 +55,18 @@ public class Invitation implements BaseInvitation {
   @Column(name = "degrees_remaining")
   private int degreesRemaining;
 
+  @Column(name = "date")
+  private String date;
+
+  @Column(name = "description")
+  private String description;
+
+  @Column(name = "title")
+  private String title;
+
+  @Column(name = "location")
+  private String location;
+
   @ManyToMany(fetch = FetchType.LAZY, mappedBy = "invitations",
       cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
 //  @OrderBy(value = "person_id")
@@ -126,5 +138,41 @@ public class Invitation implements BaseInvitation {
 
   public void setDegreesRemaining(int degreesRemaining) {
     this.degreesRemaining = degreesRemaining;
+  }
+
+  @Override
+  public String getDate() {
+    return date;
+  }
+
+  public void setDate(String date) {
+    this.date = date;
+  }
+
+  @Override
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  @Override
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  @Override
+  public String getLocation() {
+    return location;
+  }
+
+  public void setLocation(String location) {
+    this.location = location;
   }
 }
