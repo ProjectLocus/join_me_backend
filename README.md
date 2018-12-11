@@ -111,3 +111,6 @@ Marshmellow.
 * * First, call a post operation on /squares
 * * Second, call a post operation on /vertices
 * At this point full interaction with the database, using the defined end points, can take place.
+
+## Entity Relationship Diagram
+<img src="https://rawcdn.githack.com/ProjectLocus/join_me_backend/0eab4a9a31dcf15e3fe4e8ed761b42bbc624d571/erd.jpg"/>
