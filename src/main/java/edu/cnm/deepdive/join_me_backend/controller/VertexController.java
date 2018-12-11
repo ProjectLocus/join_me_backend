@@ -26,19 +26,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type Vertex controller.
+ */
 @RestController
 @ExposesResourceFor(Vertex.class)
 @RequestMapping("/vertices")
 public class VertexController {
 
+  /**
+   * The constant VERTEX_1_ID.
+   */
   public static final long VERTEX_1_ID =1001L;
+  /**
+   * The constant VERTEX_2_ID.
+   */
   public static final long VERTEX_2_ID =2002L;
+  /**
+   * The constant VERTEX_3_ID.
+   */
   public static final long VERTEX_3_ID =3003L;
+  /**
+   * The constant VERTEX_4_ID.
+   */
   public static final long VERTEX_4_ID =4004L;
+  /**
+   * The constant VERTEX_5_ID.
+   */
   public static final long VERTEX_5_ID =5005L;
+  /**
+   * The constant VERTEX_6_ID.
+   */
   public static final long VERTEX_6_ID =6006L;
+  /**
+   * The constant VERTEX_7_ID.
+   */
   public static final long VERTEX_7_ID =7007L;
+  /**
+   * The constant VERTEX_8_ID.
+   */
   public static final long VERTEX_8_ID =8008L;
+  /**
+   * The constant VERTEX_9_ID.
+   */
   public static final long VERTEX_9_ID =9009L;
 
   private InvitationRepository invitationRepository;
@@ -46,6 +76,14 @@ public class VertexController {
   private SquareRepository squareRepository;
   private VertexRepository vertexRepository;
 
+  /**
+   * Instantiates a new Vertex controller.
+   *
+   * @param invitationRepository the invitation repository
+   * @param personRepository the person repository
+   * @param squareRepository the square repository
+   * @param vertexRepository the vertex repository
+   */
   @Autowired
   public VertexController(InvitationRepository invitationRepository,
       PersonRepository personRepository, SquareRepository squareRepository,
@@ -56,12 +94,22 @@ public class VertexController {
     this.vertexRepository = vertexRepository;
   }
 
+  /**
+   * Initializes the grid with predefined vertices.
+   *
+   * @return the list
+   */
   @ApiOperation(value = "Gets all vertices.", notes = "Retrieves all vertices in the database.")
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Vertex> list(){
     return vertexRepository.findAll();
   }
 
+  /**
+   * Post response entity.
+   *
+   * @return the response entity
+   */
   @ApiOperation(value = "Initializes vertices in a new database.", notes = "Initializes vertices in a new database. This is the second operation that must be performed after wiping a database.  Squares should always be initialized first, and people and invitations should not be added until both squares and vertices are already present (in that order).")
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
   produces = MediaType.APPLICATION_JSON_VALUE)
@@ -185,17 +233,34 @@ public class VertexController {
 
   }
 
+  /**
+   * Gets a vertex.
+   *
+   * @param vertexId the vertex id
+   * @return the vertex
+   */
   @ApiOperation(value = "Gets a vertex.", notes = "Retrieves a vertex from the database, according to vertexId.")
   @GetMapping(value = "{vertexId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Vertex get(@PathVariable("vertexId") long vertexId){
     return vertexRepository.findById(vertexId).get();
   }
 
+  /**
+   * Gets html for an element.
+   *
+   * @param vertexId the vertex id
+   * @return the html
+   */
   @GetMapping(value = "{vertexId}", produces = MediaType.TEXT_HTML_VALUE)
   public String getHTML(@PathVariable("vertexId") long vertexId){
     return "<html><body>" + vertexRepository.findById(vertexId).get().getId() + "</body></html>";
   }
 
+  /**
+   * Deletes a vertex.
+   *
+   * @param vertexId the vertex id
+   */
   @ApiOperation(value = "Deletes a vertex.", notes = "Deletes a vertex, according to vertexId.")
   @DeleteMapping(value = "{vertexId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -203,12 +268,25 @@ public class VertexController {
     vertexRepository.deleteById(vertexId);
   }
 
+  /**
+   * Gets the squares associated with a vertex.
+   *
+   * @param vertexId the vertex id
+   * @return the list
+   */
   @ApiOperation(value = "Gets the squares associated with a vertex.", notes = "Gets the squares associated with a vertex, according to vertexId.")
   @GetMapping(value = "{vertexId}/squares", produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Square> squareList(@PathVariable("vertexId") long vertexId) {
     return get(vertexId).getSquares();
   }
 
+  /**
+   * Adds squares to a vertex.
+   *
+   * @param vertexId the vertex id
+   * @param partialSquare the partial square
+   * @return the response entity
+   */
   @ApiOperation(value = "Adds squares to a vertex.", notes = "Adds squares to a vertex, according to vertexId.")
   @PostMapping(value = "{vertexId}/squares", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
@@ -221,6 +299,12 @@ public class VertexController {
     return ResponseEntity.created(square.getHref()).body(square);
   }
 
+  /**
+   * Delete a square from a vertex.
+   *
+   * @param vertexId the vertex id
+   * @param squareId the square id
+   */
   @ApiOperation(value = "Deletes a square from a vertex.", notes = "Deletes a square from a vertex, according to squareId and vertexId.")
   @DeleteMapping(value = "{vertexId}/squares/{squareId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -234,6 +318,9 @@ public class VertexController {
     }
   }
 
+  /**
+   * Exists to handle notFound errors via annotations.
+   */
   @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Resource not found")
   @ExceptionHandler(NoSuchElementException.class)
   public void notFound() {

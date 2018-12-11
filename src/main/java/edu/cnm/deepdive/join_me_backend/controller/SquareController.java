@@ -27,26 +27,77 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type Square controller.
+ */
 @RestController
 @ExposesResourceFor(Square.class)
 @RequestMapping("/squares")
 public class SquareController {
 
+  /**
+   * The constant BOX_1_ID.
+   */
   public static final long BOX_1_ID =100001L;
+  /**
+   * The constant BOX_2_ID.
+   */
   public static final long BOX_2_ID =200002L;
+  /**
+   * The constant BOX_3_ID.
+   */
   public static final long BOX_3_ID =300003L;
+  /**
+   * The constant BOX_4_ID.
+   */
   public static final long BOX_4_ID =400004L;
+  /**
+   * The constant BOX_5_ID.
+   */
   public static final long BOX_5_ID =500005L;
+  /**
+   * The constant BOX_6_ID.
+   */
   public static final long BOX_6_ID =600006L;
+  /**
+   * The constant BOX_7_ID.
+   */
   public static final long BOX_7_ID =700007L;
+  /**
+   * The constant BOX_8_ID.
+   */
   public static final long BOX_8_ID =800008L;
+  /**
+   * The constant BOX_9_ID.
+   */
   public static final long BOX_9_ID =900009L;
+  /**
+   * The constant BOX_10_ID.
+   */
   public static final long BOX_10_ID =10000010L;
+  /**
+   * The constant BOX_11_ID.
+   */
   public static final long BOX_11_ID =11000011L;
+  /**
+   * The constant BOX_12_ID.
+   */
   public static final long BOX_12_ID =12000012L;
+  /**
+   * The constant BOX_13_ID.
+   */
   public static final long BOX_13_ID =13000013L;
+  /**
+   * The constant BOX_14_ID.
+   */
   public static final long BOX_14_ID =14000014L;
+  /**
+   * The constant BOX_15_ID.
+   */
   public static final long BOX_15_ID =15000015L;
+  /**
+   * The constant BOX_16_ID.
+   */
   public static final long BOX_16_ID =16000016L;
 
   private InvitationRepository invitationRepository;
@@ -58,6 +109,14 @@ public class SquareController {
   private double latitudeUpperBound = 35.0862000;
   private double latitudeLowerBound = 35.0858000;
 
+  /**
+   * Instantiates a new Square controller.
+   *
+   * @param invitationRepository the invitation repository
+   * @param personRepository the person repository
+   * @param squareRepository the square repository
+   * @param vertexRepository the vertex repository
+   */
   @Autowired
   public SquareController(InvitationRepository invitationRepository,
       PersonRepository personRepository, SquareRepository squareRepository,
@@ -67,12 +126,23 @@ public class SquareController {
     this.squareRepository = squareRepository;
     this.vertexRepository = vertexRepository;
   }
+
+  /**
+   * Gets all squares.
+   *
+   * @return the list
+   */
   @ApiOperation(value = "Gets all squares.", notes = "Retrieves all squares in the database.")
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Square> list() {
     return squareRepository.findAll();
   }
 
+  /**
+   * Initializes the grid with squares.
+   *
+   * @return the response entity
+   */
   @ApiOperation(value = "Initializes squares.", notes = "Causes pre-set squares to be added to the database. After a database wipe, this must be the first thing added to a new database.")
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
@@ -210,12 +280,23 @@ public class SquareController {
     return ResponseEntity.noContent().build();
   }
 
+  /**
+   * Gets a square.
+   *
+   * @param squareId the square id
+   * @return the square
+   */
   @ApiOperation(value = "Gets a square.", notes = "Retrieves a square according to squareId.")
   @GetMapping(value = "{squareId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Square get(@ApiParam(value = "Id for the square.", required = true)@PathVariable("squareId") long squareId) {
     return squareRepository.findById(squareId).get();
   }
 
+  /**
+   * Deletes a square.
+   *
+   * @param squareId the square id
+   */
   @ApiOperation(value = "Deletes a square.", notes = "Deletes a square according to squareId.")
   @Transactional
   @DeleteMapping(value = "{squareId}")
@@ -230,12 +311,25 @@ public class SquareController {
     squareRepository.delete(square);
   }
 
+  /**
+   * Get vertices associated with a square.
+   *
+   * @param squareId the square id
+   * @return the list
+   */
   @ApiOperation(value = "Gets vertices associated with a square.", notes = "Retrieves the vertices associated with a squareId.")
   @GetMapping("{squareId}/vertices")
   public List<Vertex> vertexList (@ApiParam(value = "Id for the square.", required = true)@PathVariable("squareId") long squareId) {
     return get(squareId).getVertices();
   }
 
+  /**
+   * Adds square to a vertex.
+   *
+   * @param squareId the square id
+   * @param partialVertex the partial vertex
+   * @return the response entity
+   */
   @ApiOperation(value = "Adds square to vertex.", notes = "Adds the square, by squareId, to the passed vertex.")
   @PostMapping(value = "{squareId}/vertices", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
@@ -248,6 +342,12 @@ public class SquareController {
     return ResponseEntity.created(square.getHref()).body(square);
   }
 
+  /**
+   * Delete vertex from a square.
+   *
+   * @param squareId the square id
+   * @param vertexId the vertex id
+   */
   @ApiOperation(value = "Removes a vertex from a square.", notes = "Deletes a vertex from a square, according to vertexId and squareId.")
   @DeleteMapping(value = "{squareId}/vertices/{vertexId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -262,6 +362,9 @@ public class SquareController {
     }
   }
 
+  /**
+   * Exists to handle Not found errors via annotations.
+   */
   @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "Resource not found")
   @ExceptionHandler(NoSuchElementException.class)
   public void notFound() {

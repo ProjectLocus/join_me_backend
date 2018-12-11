@@ -29,6 +29,9 @@ import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Square.
+ */
 @Entity
 @Component
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -64,11 +67,21 @@ public class Square implements BaseSquare {
     Square.entityLinks = entityLinks;
   }
 
+  /**
+   * Gets people.
+   *
+   * @return the people
+   */
   @JsonSerialize(contentAs = BasePerson.class)
   public List<Person> getPeople() {
     return people;
   }
 
+  /**
+   * Gets vertices.
+   *
+   * @return the vertices
+   */
   @JsonSerialize(contentAs = BaseVertex.class)
   public List<Vertex> getVertices() {
     return vertices;
@@ -105,30 +118,65 @@ public class Square implements BaseSquare {
     return entityLinks.linkForSingleResource(Square.class, id).toUri();
   }
 
+  /**
+   * Sets vertices.
+   *
+   * @param vertices the vertices
+   */
   public void setVertices(List<Vertex> vertices) {
     this.vertices = vertices;
   }
 
+  /**
+   * Sets latitude lower bound.
+   *
+   * @param latitudeLowerBound the latitude lower bound
+   */
   public void setLatitudeLowerBound(double latitudeLowerBound) {
     this.latitudeLowerBound = latitudeLowerBound;
   }
 
+  /**
+   * Sets latitude upper bound.
+   *
+   * @param latitudeUpperBound the latitude upper bound
+   */
   public void setLatitudeUpperBound(double latitudeUpperBound) {
     this.latitudeUpperBound = latitudeUpperBound;
   }
 
+  /**
+   * Sets longitude lower bound.
+   *
+   * @param longitudeLowerBound the longitude lower bound
+   */
   public void setLongitudeLowerBound(double longitudeLowerBound) {
     this.longitudeLowerBound = longitudeLowerBound;
   }
 
+  /**
+   * Sets longitude upper bound.
+   *
+   * @param longitudeUpperBound the longitude upper bound
+   */
   public void setLongitudeUpperBound(double longitudeUpperBound) {
     this.longitudeUpperBound = longitudeUpperBound;
   }
 
+  /**
+   * Sets people.
+   *
+   * @param people the people
+   */
   public void setPeople(List<Person> people) {
     this.people = people;
   }
 
+  /**
+   * Sets id.
+   *
+   * @param id the id
+   */
   public void setId(long id) {
     this.id = id;
   }

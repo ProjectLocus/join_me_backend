@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type Invitation controller.
+ */
 @RestController
 @ExposesResourceFor(Invitation.class)
 @RequestMapping("/invitations")
@@ -29,6 +32,14 @@ public class InvitationController {
   private SquareRepository squareRepository;
   private VertexRepository vertexRepository;
 
+  /**
+   * Instantiates a new Invitation controller.
+   *
+   * @param invitationRepository the invitation repository
+   * @param personRepository the person repository
+   * @param squareRepository the square repository
+   * @param vertexRepository the vertex repository
+   */
   @Autowired
   public InvitationController(
       InvitationRepository invitationRepository,
@@ -41,12 +52,23 @@ public class InvitationController {
     this.vertexRepository = vertexRepository;
   }
 
+  /**
+   * Gets all invitations.
+   *
+   * @return the list
+   */
   @ApiOperation(value = "Gets all invitations.", notes = "Retrieves all invitations from/to all people.")
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Invitation> list() {
     return invitationRepository.findAll();
   }
 
+  /**
+   * Gets single invitation.
+   *
+   * @param invitationId the invitation id
+   * @return the single invitation
+   */
   @ApiOperation(value = "Gets an invitation.", notes = "Retrieves the invitation for the given invitationId.")
   @GetMapping(value = "{invitationId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Invitation getSingleInvitation(@ApiParam(value = "Id for the invitation.", required = true) @PathVariable ("invitationId") long invitationId){

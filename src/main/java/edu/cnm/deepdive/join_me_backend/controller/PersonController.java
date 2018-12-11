@@ -26,6 +26,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type Person controller.
+ */
 @RestController
 @ExposesResourceFor(Person.class)
 @RequestMapping("/people")
@@ -35,13 +38,39 @@ public class PersonController {
   private PersonRepository personRepository;
   private SquareRepository squareRepository;
   private VertexRepository vertexRepository;
+  /**
+   * The constant SOUTH_LAT_LINE.
+   */
   public static double SOUTH_LAT_LINE = 35.0859000; //farthest south
+  /**
+   * The constant MIDDLE_LAT_LINE.
+   */
   public static double MIDDLE_LAT_LINE = 35.0860000; //middle
+  /**
+   * The constant NORTH_LAT_LINE.
+   */
   public static double NORTH_LAT_LINE = 35.0861000; //farthest north
+  /**
+   * The constant EAST_LONG_LINE.
+   */
   public static double EAST_LONG_LINE = -106.6494000; //farthest east
+  /**
+   * The constant MIDDLE_LONG_LINE.
+   */
   public static double MIDDLE_LONG_LINE = -106.6495000; //middle
+  /**
+   * The constant WEST_LONG_LINE.
+   */
   public static double WEST_LONG_LINE = -106.6496000; //farthest west
 
+  /**
+   * Instantiates a new Person controller.
+   *
+   * @param invitationRepository the invitation repository
+   * @param personRepository the person repository
+   * @param squareRepository the square repository
+   * @param vertexRepository the vertex repository
+   */
   @Autowired
   public PersonController(
       InvitationRepository invitationRepository,
@@ -54,13 +83,24 @@ public class PersonController {
     this.vertexRepository = vertexRepository;
   }
 
-  //
+  /**
+   * Gets all people in database.
+   *
+   * @return the list
+   */
+//
   @ApiOperation(value = "Gets all Person objects.", notes = "Retrieves all people.")
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Person> list() {
     return personRepository.findAll();
   }
 
+  /**
+   * Adds a person to database.
+   *
+   * @param person the person
+   * @return the response entity
+   */
   @ApiOperation(value = "Adds person.", notes = "Adds person to database.")
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
@@ -71,12 +111,25 @@ public class PersonController {
     return ResponseEntity.created(person.getHref()).body(person);
   }
 
+  /**
+   * Get a person.
+   *
+   * @param personId the person id
+   * @return the person
+   */
   @ApiOperation(value = "Gets a person.", notes = "Retrieves a person according to personId.")
   @GetMapping(value = "{personId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Person get(@ApiParam(value = "Id for the person.", required = true)@PathVariable("personId") long personId) {
     return personRepository.findById(personId).get();
   }
 
+  /**
+   * Update a person.
+   *
+   * @param person the person
+   * @param personId the person id
+   * @return the response entity
+   */
   @ApiOperation(value = "Updates a person.", notes = "Updates a person according to personId.")
   @PutMapping(value = "{personId}")
   public ResponseEntity<Person> updatePerson(@ApiParam(value = "Person object.", required = true)@RequestBody Person person,
@@ -90,12 +143,23 @@ public class PersonController {
     return ResponseEntity.noContent().build();
   }
 
+  /**
+   * Deletes a person.
+   *
+   * @param personId the person id
+   */
   @ApiOperation(value = "Deletes a person.", notes = "Deletes a person according to personId.")
   @DeleteMapping(value = "{personId}")
   public void deletePerson(@ApiParam(value = "Id for the person.", required = true)@PathVariable("personId") long personId) {
     personRepository.deleteById(personId);
   }
 
+  /**
+   * Gets all invitations per person.
+   *
+   * @param personId the person id
+   * @return the all invitations per person
+   */
   @ApiOperation(value = "Gets all new invitations for a person.", notes = "Retrieves all new invitation for a person according to personId.")
   @GetMapping(value = "{personId}/invitations", produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Invitation> getAllInvitationsPerPerson(@ApiParam(value = "Id for the person.", required = true)@PathVariable("personId") long personId) {
@@ -120,6 +184,12 @@ public class PersonController {
     return new LinkedList<>();
   }
 
+  /**
+   * Gets a single invitaiton.
+   *
+   * @param invitationId the invitation id
+   * @return the invitation per person
+   */
   @ApiOperation(value = "Gets a single invitation.", notes = "Retrieves a single invitation associated with a person, according to personId.")
   @GetMapping(value = "{personId}/invitations/{invitationId}",
       produces = MediaType.APPLICATION_JSON_VALUE)
@@ -127,6 +197,13 @@ public class PersonController {
     return invitationRepository.findById(invitationId).get();
   }
 
+  /**
+   * Add an invitation to a person.
+   *
+   * @param personId the person id
+   * @param invitation the invitation
+   * @return the response entity
+   */
   @ApiOperation(value = "Adds an invitation to a person.", notes = "Adds an invitation to a person according to personId.")
   @PostMapping(value = "{personId}/invitations", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
@@ -143,6 +220,12 @@ public class PersonController {
     return ResponseEntity.created(invitation.getHref()).body(invitation);
   }
 
+  /**
+   * Update an invitation.
+   *
+   * @param invitationId the invitation id
+   * @return the response entity
+   */
   @ApiOperation(value = "Updates an invitation.", notes = "Updates a single person's id, based on personId and invitationId.")
   @PutMapping(value = "{personId}/invitations/{invitationId}")
   public ResponseEntity<Invitation> updateInvitation(@ApiParam(value = "Id for the invitation.", required = true)
@@ -156,6 +239,13 @@ public class PersonController {
     return ResponseEntity.notFound().build();
   }
 
+  /**
+   * Gets people nearby.
+   *
+   * @param requesterUser the requester user
+   * @param personId the person id
+   * @return the people nearby
+   */
   @ApiOperation(value = "Updates a person's location and gets the people near them.", notes = "Causes a person's location to be updated and retrieves a list of all the people that are near the new location.")
   @PutMapping(value = "{personId}/people", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)

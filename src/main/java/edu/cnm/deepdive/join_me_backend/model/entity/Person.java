@@ -30,6 +30,9 @@ import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Person.
+ */
 @Entity
 @Component
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -92,6 +95,11 @@ public class Person implements BasePerson {
     return personId;
   }
 
+  /**
+   * Sets person id.
+   *
+   * @param personId the person id
+   */
   public void setPersonId(long personId) {
     this.personId = personId;
   }
@@ -131,50 +139,105 @@ public class Person implements BasePerson {
     return userDescription;
   }
 
+  /**
+   * Gets closest vertex.
+   *
+   * @return the closest vertex
+   */
   @JsonSerialize(contentAs = BaseVertex.class)
   public Vertex getClosestVertex() {
     return closestVertex;
   }
 
+  /**
+   * Sets closest vertex.
+   *
+   * @param closestVertex the closest vertex
+   */
   public void setClosestVertex(Vertex closestVertex) {
     this.closestVertex = closestVertex;
   }
 
+  /**
+   * Sets latitude.
+   *
+   * @param latitude the latitude
+   */
   public void setLatitude(double latitude) {
     this.latitude = latitude;
   }
 
+  /**
+   * Sets longitude.
+   *
+   * @param longitude the longitude
+   */
   public void setLongitude(double longitude) {
     this.longitude = longitude;
   }
 
+  /**
+   * Sets display name.
+   *
+   * @param displayName the display name
+   */
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
 
+  /**
+   * Sets user image location.
+   *
+   * @param userImageLocation the user image location
+   */
   public void setUserImageLocation(String userImageLocation) {
     this.userImageLocation = userImageLocation;
   }
 
+  /**
+   * Sets user description.
+   *
+   * @param userDescription the user description
+   */
   public void setUserDescription(String userDescription) {
     this.userDescription = userDescription;
   }
 
+  /**
+   * Gets invitations.
+   *
+   * @return the invitations
+   */
   @JsonSerialize(contentAs = BaseInvitation.class)
   public List<Invitation> getInvitations() {
     return invitations;
   }
 
+  /**
+   * Sets invitations.
+   *
+   * @param invitations the invitations
+   */
   public void setInvitations(
       List<Invitation> invitations) {
     this.invitations = invitations;
   }
 
+  /**
+   * Gets current square.
+   *
+   * @return the current square
+   */
   @JsonSerialize(contentAs = BaseSquare.class)
   public Square getCurrentSquare() {
     return currentSquare;
   }
 
+  /**
+   * Sets current square.
+   *
+   * @param currentSquare the current square
+   */
   public void setCurrentSquare(Square currentSquare) {
     this.currentSquare = currentSquare;
   }
@@ -185,6 +248,11 @@ public class Person implements BasePerson {
     return googleUserId;
   }
 
+  /**
+   * Sets google user id.
+   *
+   * @param googleUserId the google user id
+   */
   public void setGoogleUserId(String googleUserId) {
     this.googleUserId = googleUserId;
   }

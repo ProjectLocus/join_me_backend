@@ -29,6 +29,9 @@ import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Invitation.
+ */
 @Entity
 @Component
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -104,15 +107,30 @@ public class Invitation implements BaseInvitation {
     return userReceiverId;
   }
 
+  /**
+   * Gets people.
+   *
+   * @return the people
+   */
   @JsonSerialize(contentAs = BasePerson.class)
   public List<Person> getPeople() {
     return people;
   }
 
+  /**
+   * Sets user sender id.
+   *
+   * @param userSenderId the user sender id
+   */
   public void setUserSenderId(long userSenderId) {
     this.userSenderId = userSenderId;
   }
 
+  /**
+   * Sets user receiver id.
+   *
+   * @param userReceiverId the user receiver id
+   */
   public void setUserReceiverId(long userReceiverId) {
     this.userReceiverId = userReceiverId;
   }
@@ -123,6 +141,11 @@ public class Invitation implements BaseInvitation {
     return wasDelivered;
   }
 
+  /**
+   * Sets was delivered.
+   *
+   * @param wasDelivered the was delivered
+   */
   public void setWasDelivered(boolean wasDelivered) {
     this.wasDelivered = wasDelivered;
   }
@@ -133,6 +156,11 @@ public class Invitation implements BaseInvitation {
     return willAttend;
   }
 
+  /**
+   * Sets will attend.
+   *
+   * @param willAttend the will attend
+   */
   public void setWillAttend(boolean willAttend) {
     this.willAttend = willAttend;
   }
@@ -143,6 +171,11 @@ public class Invitation implements BaseInvitation {
     return degreesRemaining;
   }
 
+  /**
+   * Sets degrees remaining.
+   *
+   * @param degreesRemaining the degrees remaining
+   */
   public void setDegreesRemaining(int degreesRemaining) {
     this.degreesRemaining = degreesRemaining;
   }
@@ -153,6 +186,11 @@ public class Invitation implements BaseInvitation {
     return date;
   }
 
+  /**
+   * Sets date.
+   *
+   * @param date the date
+   */
   public void setDate(String date) {
     this.date = date;
   }
@@ -163,6 +201,11 @@ public class Invitation implements BaseInvitation {
     return description;
   }
 
+  /**
+   * Sets description.
+   *
+   * @param description the description
+   */
   public void setDescription(String description) {
     this.description = description;
   }
@@ -173,6 +216,11 @@ public class Invitation implements BaseInvitation {
     return title;
   }
 
+  /**
+   * Sets title.
+   *
+   * @param title the title
+   */
   public void setTitle(String title) {
     this.title = title;
   }
@@ -183,6 +231,11 @@ public class Invitation implements BaseInvitation {
     return location;
   }
 
+  /**
+   * Sets location.
+   *
+   * @param location the location
+   */
   public void setLocation(String location) {
     this.location = location;
   }

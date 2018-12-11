@@ -26,6 +26,9 @@ import org.springframework.hateoas.EntityLinks;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
+/**
+ * The type Vertex.
+ */
 @Entity
 @Component
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -74,6 +77,11 @@ public class Vertex implements BaseVertex {
     return longitude;
   }
 
+  /**
+   * Gets squares.
+   *
+   * @return the squares
+   */
   @JsonSerialize(contentAs = BaseSquare.class)
   public List<Square> getSquares() {
     return squares;
@@ -85,6 +93,11 @@ public class Vertex implements BaseVertex {
     return id;
   }
 
+  /**
+   * Sets id.
+   *
+   * @param id the id
+   */
   public void setId(long id) {
     this.id = id;
   }
@@ -94,14 +107,29 @@ public class Vertex implements BaseVertex {
     return entityLinks.linkForSingleResource(Vertex.class, id).toUri();
   }
 
+  /**
+   * Sets latitude.
+   *
+   * @param latitude the latitude
+   */
   public void setLatitude(double latitude) {
     this.latitude = latitude;
   }
 
+  /**
+   * Sets longitude.
+   *
+   * @param longitude the longitude
+   */
   public void setLongitude(double longitude) {
     this.longitude = longitude;
   }
 
+  /**
+   * Sets squares.
+   *
+   * @param squares the squares
+   */
   public void setSquares(List<Square> squares) {
     this.squares = squares;
   }
