@@ -4,13 +4,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>edu.cnm.deepdive</groupId>
-  <artifactId>join_me_backend</artifactId>
+  <groupId>edu.cnm.deepdive.join_me_backend</groupId>
+  <artifactId>joinmebackend</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>join_me_backend</name>
-  <description>Demo project for Spring Boot</description>
+  <name>JoinMeBackend</name>
+  <description>Join Me Spring Boot Backend</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -48,6 +48,11 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>io.swagger</groupId>
+      <artifactId>swagger-annotations</artifactId>
+      <version>1.5.18</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -55,6 +60,48 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.github.kongchen</groupId>
+        <artifactId>swagger-maven-plugin</artifactId>
+        <version>3.1.7</version>
+        <configuration>
+          <apiSources>
+            <apiSource>
+              <springmvc>true</springmvc>
+              <locations>
+                <location>edu.cnm.deepdive.join_me_backend.controller.InvitationController</location>
+                <location>edu.cnm.deepdive.join_me_backend.controller.PersonController</location>
+                <location>edu.cnm.deepdive.join_me_backend.controller.SquareController</location>
+                <location>edu.cnm.deepdive.join_me_backend.controller.VertexController</location>
+              </locations>
+              <schemes>
+                <scheme>http</scheme>
+              </schemes>
+              <host>http://joinme.us-east-2.elasticbeanstalk.com</host>
+              <basePath>/rest</basePath>
+              <info>
+                <title>Join Me Backend</title>
+                <version>v1</version>
+                <description>Restful API for Join Me</description>
+              </info>
+              <!--<templatePath>classpath:/templates/strapdown.html.hbs</templatePath>-->
+              <templatePath>classpath:/templates/markdown.hbs</templatePath>
+              <!--<outputPath>${basedir}/docs/rest/api.html</outputPath>-->
+              <outputPath>${basedir}/docs/rest/api.md</outputPath>
+              <swaggerDirectory>${basedir}/docs/rest</swaggerDirectory>
+              <outputFormats>json,yaml</outputFormats>
+            </apiSource>
+          </apiSources>
+        </configuration>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

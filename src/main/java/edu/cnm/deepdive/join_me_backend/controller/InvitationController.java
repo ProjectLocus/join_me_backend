@@ -7,6 +7,8 @@ import edu.cnm.deepdive.join_me_backend.model.dao.SquareRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.VertexRepository;
 import edu.cnm.deepdive.join_me_backend.model.entity.Invitation;
 import edu.cnm.deepdive.join_me_backend.model.entity.Person;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.ExposesResourceFor;
@@ -39,13 +41,15 @@ public class InvitationController {
     this.vertexRepository = vertexRepository;
   }
 
+  @ApiOperation(value = "Gets all invitations.", notes = "Retrieves all invitations from/to all people.")
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Invitation> list() {
     return invitationRepository.findAll();
   }
 
+  @ApiOperation(value = "Gets an invitation.", notes = "Retrieves the invitation for the given invitationId.")
   @GetMapping(value = "{invitationId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Invitation getSingleInvitation(@PathVariable ("invitationId") long invitationId){
+  public Invitation getSingleInvitation(@ApiParam(value = "Id for the invitation.", required = true) @PathVariable ("invitationId") long invitationId){
     return invitationRepository.findById(invitationId).get();
   }
 

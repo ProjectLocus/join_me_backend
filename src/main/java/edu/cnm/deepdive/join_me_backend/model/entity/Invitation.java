@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.cnm.deepdive.join_me_backend.view.BaseInvitation;
 import edu.cnm.deepdive.join_me_backend.view.BasePerson;
 import edu.cnm.deepdive.join_me_backend.view.BaseVertex;
+import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
@@ -80,6 +81,7 @@ public class Invitation implements BaseInvitation {
   @Autowired
   private void setEntityLinks(EntityLinks entityLinks) {Invitation.entityLinks = entityLinks;}
 
+  @ApiModelProperty(value = "invitation_id", required = true, example = "111")
   @Override
   public long getId() {
     return id;
@@ -90,11 +92,13 @@ public class Invitation implements BaseInvitation {
     return entityLinks.linkForSingleResource(Invitation.class, id).toUri();
   }
 
+  @ApiModelProperty(value = "user_sender_id", required = true, example = "13")
   @Override
   public long getUserSenderId() {
     return userSenderId;
   }
 
+  @ApiModelProperty(value = "user_receiver_id", required = true, example = "2")
   @Override
   public long getUserReceiverId() {
     return userReceiverId;
@@ -113,6 +117,7 @@ public class Invitation implements BaseInvitation {
     this.userReceiverId = userReceiverId;
   }
 
+  @ApiModelProperty(value = "was_delivered", required = true, example = "false")
   @Override
   public boolean getWasDelivered() {
     return wasDelivered;
@@ -122,6 +127,7 @@ public class Invitation implements BaseInvitation {
     this.wasDelivered = wasDelivered;
   }
 
+  @ApiModelProperty(value = "will_attend", required = true, example = "false")
   @Override
   public boolean getWillAttend() {
     return willAttend;
@@ -131,6 +137,7 @@ public class Invitation implements BaseInvitation {
     this.willAttend = willAttend;
   }
 
+  @ApiModelProperty(value = "degrees_remaining", required = false, example = "The number of times the invitation can be reused.")
   @Override
   public int getDegreesRemaining() {
     return degreesRemaining;
@@ -140,6 +147,7 @@ public class Invitation implements BaseInvitation {
     this.degreesRemaining = degreesRemaining;
   }
 
+  @ApiModelProperty(value = "date", required = true, example = "A string representation of the date for the really fun event.")
   @Override
   public String getDate() {
     return date;
@@ -149,6 +157,7 @@ public class Invitation implements BaseInvitation {
     this.date = date;
   }
 
+  @ApiModelProperty(value = "description", required = true, example = "This is a description of the really fun event someone is being invited to attend.")
   @Override
   public String getDescription() {
     return description;
@@ -158,6 +167,7 @@ public class Invitation implements BaseInvitation {
     this.description = description;
   }
 
+  @ApiModelProperty(value = "title", required = true, example = "This is the title of my invitation.")
   @Override
   public String getTitle() {
     return title;
@@ -167,6 +177,7 @@ public class Invitation implements BaseInvitation {
     this.title = title;
   }
 
+  @ApiModelProperty(value = "location", required = true, example = "A string representation of the location of the event.")
   @Override
   public String getLocation() {
     return location;

@@ -7,6 +7,7 @@ import edu.cnm.deepdive.join_me_backend.model.dao.SquareRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.VertexRepository;
 import edu.cnm.deepdive.join_me_backend.model.entity.Square;
 import edu.cnm.deepdive.join_me_backend.model.entity.Vertex;
+import io.swagger.annotations.ApiOperation;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -55,11 +56,13 @@ public class VertexController {
     this.vertexRepository = vertexRepository;
   }
 
+  @ApiOperation(value = "Gets all vertices.", notes = "Retrieves all vertices in the database.")
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Vertex> list(){
     return vertexRepository.findAll();
   }
 
+  @ApiOperation(value = "Initializes vertices in a new database.", notes = "Initializes vertices in a new database. This is the second operation that must be performed after wiping a database.  Squares should always be initialized first, and people and invitations should not be added until both squares and vertices are already present (in that order).")
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
   produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Vertex> post(){
@@ -182,6 +185,7 @@ public class VertexController {
 
   }
 
+  @ApiOperation(value = "Gets a vertex.", notes = "Retrieves a vertex from the database, according to vertexId.")
   @GetMapping(value = "{vertexId}", produces = MediaType.APPLICATION_JSON_VALUE)
   public Vertex get(@PathVariable("vertexId") long vertexId){
     return vertexRepository.findById(vertexId).get();
@@ -192,17 +196,20 @@ public class VertexController {
     return "<html><body>" + vertexRepository.findById(vertexId).get().getId() + "</body></html>";
   }
 
+  @ApiOperation(value = "Deletes a vertex.", notes = "Deletes a vertex, according to vertexId.")
   @DeleteMapping(value = "{vertexId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void delete(@PathVariable("vertexId") long vertexId){
     vertexRepository.deleteById(vertexId);
   }
 
+  @ApiOperation(value = "Gets the squares associated with a vertex.", notes = "Gets the squares associated with a vertex, according to vertexId.")
   @GetMapping(value = "{vertexId}/squares", produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Square> squareList(@PathVariable("vertexId") long vertexId) {
     return get(vertexId).getSquares();
   }
 
+  @ApiOperation(value = "Adds squares to a vertex.", notes = "Adds squares to a vertex, according to vertexId.")
   @PostMapping(value = "{vertexId}/squares", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<Square> postSquare(@PathVariable("vertexId") long vertexId,
@@ -214,6 +221,7 @@ public class VertexController {
     return ResponseEntity.created(square.getHref()).body(square);
   }
 
+  @ApiOperation(value = "Deletes a square from a vertex.", notes = "Deletes a square from a vertex, according to squareId and vertexId.")
   @DeleteMapping(value = "{vertexId}/squares/{squareId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void deleteSquare(@PathVariable("vertexId") long vertexId, @PathVariable("squareId") long squareId){
@@ -230,8 +238,5 @@ public class VertexController {
   @ExceptionHandler(NoSuchElementException.class)
   public void notFound() {
   }
-
-  //make a get mapping to return all person associated with vertex, by calling the get persons via squares
-
 
 }

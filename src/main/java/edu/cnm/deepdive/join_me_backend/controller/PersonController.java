@@ -8,6 +8,8 @@ import edu.cnm.deepdive.join_me_backend.model.dao.VertexRepository;
 import edu.cnm.deepdive.join_me_backend.model.entity.Invitation;
 import edu.cnm.deepdive.join_me_backend.model.entity.Person;
 import edu.cnm.deepdive.join_me_backend.model.entity.Square;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -53,28 +55,32 @@ public class PersonController {
   }
 
   //
+  @ApiOperation(value = "Gets all Person objects.", notes = "Retrieves all people.")
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Person> list() {
     return personRepository.findAll();
   }
 
+  @ApiOperation(value = "Adds person.", notes = "Adds person to database.")
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Person> post(@RequestBody Person person) {
+  public ResponseEntity<Person> post(@ApiParam(value = "Partial person object.", required = true)@RequestBody Person person) {
     person.setClosestVertex(vertexRepository.findAll().get(0));
     long personId = personRepository.save(person).getPersonId();
     updateUser(person, personId);
     return ResponseEntity.created(person.getHref()).body(person);
   }
 
+  @ApiOperation(value = "Gets a person.", notes = "Retrieves a person according to personId.")
   @GetMapping(value = "{personId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Person get(@PathVariable("personId") long personId) {
+  public Person get(@ApiParam(value = "Id for the person.", required = true)@PathVariable("personId") long personId) {
     return personRepository.findById(personId).get();
   }
 
+  @ApiOperation(value = "Updates a person.", notes = "Updates a person according to personId.")
   @PutMapping(value = "{personId}")
-  public ResponseEntity<Person> updatePerson(@RequestBody Person person,
-      @PathVariable("personId") long personId) {
+  public ResponseEntity<Person> updatePerson(@ApiParam(value = "Person object.", required = true)@RequestBody Person person,
+      @ApiParam(value = "Id for the person.", required = true)@PathVariable("personId") long personId) {
     Optional<Person> personOptional = personRepository.findById(personId);
     if (!personOptional.isPresent()) {
       return ResponseEntity.notFound().build();
@@ -84,13 +90,15 @@ public class PersonController {
     return ResponseEntity.noContent().build();
   }
 
+  @ApiOperation(value = "Deletes a person.", notes = "Deletes a person according to personId.")
   @DeleteMapping(value = "{personId}")
-  public void deletePerson(@PathVariable("personId") long personId) {
+  public void deletePerson(@ApiParam(value = "Id for the person.", required = true)@PathVariable("personId") long personId) {
     personRepository.deleteById(personId);
   }
 
+  @ApiOperation(value = "Gets all new invitations for a person.", notes = "Retrieves all new invitation for a person according to personId.")
   @GetMapping(value = "{personId}/invitations", produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<Invitation> getAllInvitationsPerPerson(@PathVariable("personId") long personId) {
+  public List<Invitation> getAllInvitationsPerPerson(@ApiParam(value = "Id for the person.", required = true)@PathVariable("personId") long personId) {
 //    return personRepository.findById(personId).get().getInvitations();
 
     Optional<Person> personOptional = personRepository.findById(personId);
@@ -112,16 +120,18 @@ public class PersonController {
     return new LinkedList<>();
   }
 
+  @ApiOperation(value = "Gets a single invitation.", notes = "Retrieves a single invitation associated with a person, according to personId.")
   @GetMapping(value = "{personId}/invitations/{invitationId}",
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public Invitation getInvitationPerPerson(@PathVariable("invitationId") long invitationId) {
+  public Invitation getInvitationPerPerson(@ApiParam(value = "Id for the invitation.", required = true)@PathVariable("invitationId") long invitationId) {
     return invitationRepository.findById(invitationId).get();
   }
 
+  @ApiOperation(value = "Adds an invitation to a person.", notes = "Adds an invitation to a person according to personId.")
   @PostMapping(value = "{personId}/invitations", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Invitation> addInvitation(@PathVariable("personId") long personId,
-      @RequestBody Invitation invitation) {
+  public ResponseEntity<Invitation> addInvitation(@ApiParam(value = "Id for the person.", required = true)@PathVariable("personId") long personId,
+      @ApiParam(value = "Invitation object.", required = true)@RequestBody Invitation invitation) {
     Optional<Person> personOptional = personRepository.findById(personId);
     if (!personOptional.isPresent()) {
       return ResponseEntity.notFound().build();
@@ -133,8 +143,9 @@ public class PersonController {
     return ResponseEntity.created(invitation.getHref()).body(invitation);
   }
 
+  @ApiOperation(value = "Updates an invitation.", notes = "Updates a single person's id, based on personId and invitationId.")
   @PutMapping(value = "{personId}/invitations/{invitationId}")
-  public ResponseEntity<Invitation> updateInvitation(
+  public ResponseEntity<Invitation> updateInvitation(@ApiParam(value = "Id for the invitation.", required = true)
       @PathVariable("invitationId") long invitationId) {
     Optional<Invitation> invitationOptional = invitationRepository.findById(invitationId);
     if (invitationOptional.isPresent()) {
@@ -145,19 +156,11 @@ public class PersonController {
     return ResponseEntity.notFound().build();
   }
 
-//  @DeleteMapping(value = "{personId}/invitations/{invitationId}")
-//  public void deleteInvitation(@PathVariable("invitationId") long invitationId){
-//    Optional<Invitation> invitationOptional = invitationRepository.findById(invitationId);
-//
-//    if (invitationOptional.isPresent() ){
-//      invitationRepository.deleteById(invitationId);
-//    }
-//  }
-
+  @ApiOperation(value = "Updates a person's location and gets the people near them.", notes = "Causes a person's location to be updated and retrieves a list of all the people that are near the new location.")
   @PutMapping(value = "{personId}/people", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public List<Person> getPeopleNearby(@RequestBody Person requesterUser,
-      @PathVariable("personId") long personId) {
+  public List<Person> getPeopleNearby(@ApiParam(value = "Person object.", required = true)@RequestBody Person requesterUser,
+      @ApiParam(value = "Id for the person.", required = true)@PathVariable("personId") long personId) {
     Optional<Person> personOptional = personRepository.findById(personId);
     if (personOptional.isPresent()) {
       updateUser(requesterUser, personId);
@@ -172,23 +175,6 @@ public class PersonController {
     return new LinkedList<>();
   }
 
-//  @PutMapping(value = "{personId}/people", consumes = MediaType.APPLICATION_JSON_VALUE,
-//      produces = MediaType.APPLICATION_JSON_VALUE)
-//  public List<Person> getPeopleNearby(@RequestBody Person requesterUser,
-//      @PathVariable("personId") long personId) {
-//    Optional<Person> personOptional = personRepository.findById(personId);
-//    if (personOptional.isPresent()) {
-//      updateUser(requesterUser, personId);
-//      List<Person> tempPersons = new LinkedList<>();
-//      List<Square> tempSquare = personOptional.get().getClosestVertex().getSquares();
-//      for (Square square :
-//          tempSquare) {
-//        tempPersons.addAll(square.getPeople());
-//      }
-//      return tempPersons;
-//    }
-//    return new LinkedList<>();
-//  }
 
   private void updateUser(Person requesterUser, long personId) {
     requesterUser.setPersonId(personId);

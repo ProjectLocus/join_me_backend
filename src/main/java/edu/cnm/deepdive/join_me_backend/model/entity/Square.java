@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.cnm.deepdive.join_me_backend.view.BasePerson;
 import edu.cnm.deepdive.join_me_backend.view.BaseSquare;
 import edu.cnm.deepdive.join_me_backend.view.BaseVertex;
+import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
@@ -93,6 +94,7 @@ public class Square implements BaseSquare {
     return longitudeUpperBound;
   }
 
+  @ApiModelProperty(value = "square_id", required = true, example = "3")
   @Override
   public long getId() {
     return id;

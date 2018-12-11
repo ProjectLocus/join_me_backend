@@ -6,6 +6,8 @@ import edu.cnm.deepdive.join_me_backend.model.dao.SquareRepository;
 import edu.cnm.deepdive.join_me_backend.model.dao.VertexRepository;
 import edu.cnm.deepdive.join_me_backend.model.entity.Square;
 import edu.cnm.deepdive.join_me_backend.model.entity.Vertex;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -65,12 +67,13 @@ public class SquareController {
     this.squareRepository = squareRepository;
     this.vertexRepository = vertexRepository;
   }
-
+  @ApiOperation(value = "Gets all squares.", notes = "Retrieves all squares in the database.")
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
   public List<Square> list() {
     return squareRepository.findAll();
   }
 
+  @ApiOperation(value = "Initializes squares.", notes = "Causes pre-set squares to be added to the database. After a database wipe, this must be the first thing added to a new database.")
   @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<List<Square>> post() {
@@ -207,15 +210,17 @@ public class SquareController {
     return ResponseEntity.noContent().build();
   }
 
+  @ApiOperation(value = "Gets a square.", notes = "Retrieves a square according to squareId.")
   @GetMapping(value = "{squareId}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public Square get(@PathVariable("squareId") long squareId) {
+  public Square get(@ApiParam(value = "Id for the square.", required = true)@PathVariable("squareId") long squareId) {
     return squareRepository.findById(squareId).get();
   }
 
+  @ApiOperation(value = "Deletes a square.", notes = "Deletes a square according to squareId.")
   @Transactional
   @DeleteMapping(value = "{squareId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void delete(@PathVariable("squareId") long squareId) {
+  public void delete(@ApiParam(value = "Id for the square.", required = true)@PathVariable("squareId") long squareId) {
     Square square = get(squareId);
     List<Vertex> vertices = square.getVertices();
     for (Vertex vertex : vertices) {
@@ -225,16 +230,17 @@ public class SquareController {
     squareRepository.delete(square);
   }
 
-  // TODONE Add controller method to return list of Student instances for a specified projectId.
+  @ApiOperation(value = "Gets vertices associated with a square.", notes = "Retrieves the vertices associated with a squareId.")
   @GetMapping("{squareId}/vertices")
-  public List<Vertex> vertexList (@PathVariable("squareId") long squareId) {
+  public List<Vertex> vertexList (@ApiParam(value = "Id for the square.", required = true)@PathVariable("squareId") long squareId) {
     return get(squareId).getVertices();
   }
 
+  @ApiOperation(value = "Adds square to vertex.", notes = "Adds the square, by squareId, to the passed vertex.")
   @PostMapping(value = "{squareId}/vertices", consumes = MediaType.APPLICATION_JSON_VALUE,
       produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Square> postVertex(@PathVariable("squareId") long squareId,
-      @RequestBody Vertex partialVertex) {
+  public ResponseEntity<Square> postVertex(@ApiParam(value = "Id for the square.", required = true)@PathVariable("squareId") long squareId,
+      @ApiParam(value = "Vertex object.", required = true)@RequestBody Vertex partialVertex) {
     Square square = get(squareId);
     Vertex vertex = vertexRepository.findById(partialVertex.getId()).get();
     vertex.getSquares().add(square);
@@ -242,10 +248,11 @@ public class SquareController {
     return ResponseEntity.created(square.getHref()).body(square);
   }
 
+  @ApiOperation(value = "Removes a vertex from a square.", notes = "Deletes a vertex from a square, according to vertexId and squareId.")
   @DeleteMapping(value = "{squareId}/vertices/{vertexId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
-  public void deleteVertex(@PathVariable("squareId") long squareId,
-      @PathVariable("vertexId") long vertexId) {
+  public void deleteVertex(@ApiParam(value = "Id for the square.", required = true)@PathVariable("squareId") long squareId,
+      @ApiParam(value = "Id for the vertex.", required = true)@PathVariable("vertexId") long vertexId) {
     Square square = get(squareId);
     Vertex vertex = vertexRepository.findById(vertexId).get();
     if (square.getVertices().remove(vertex)){

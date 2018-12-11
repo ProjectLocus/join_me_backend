@@ -1,0 +1,834 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Restful API for Join Me",
+    "version" : "v1",
+    "title" : "Join Me Backend"
+  },
+  "host" : "http://joinme.us-east-2.elasticbeanstalk.com",
+  "basePath" : "/rest",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/invitations" : {
+      "get" : {
+        "summary" : "Gets all invitations.",
+        "description" : "Retrieves all invitations from/to all people.",
+        "operationId" : "list",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Invitation"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/invitations/{invitationId}" : {
+      "get" : {
+        "summary" : "Gets an invitation.",
+        "description" : "Retrieves the invitation for the given invitationId.",
+        "operationId" : "getSingleInvitation",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "invitationId",
+          "in" : "path",
+          "description" : "Id for the invitation.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Invitation"
+            }
+          }
+        }
+      }
+    },
+    "/people" : {
+      "get" : {
+        "summary" : "Gets all Person objects.",
+        "description" : "Retrieves all people.",
+        "operationId" : "list",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Person"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Adds person.",
+        "description" : "Adds person to database.",
+        "operationId" : "post",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Partial person object.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Person"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Person"
+            }
+          }
+        }
+      }
+    },
+    "/people/{personId}" : {
+      "get" : {
+        "summary" : "Gets a person.",
+        "description" : "Retrieves a person according to personId.",
+        "operationId" : "get",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "personId",
+          "in" : "path",
+          "description" : "Id for the person.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Person"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates a person.",
+        "description" : "Updates a person according to personId.",
+        "operationId" : "updatePerson",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Person object.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Person"
+          }
+        }, {
+          "name" : "personId",
+          "in" : "path",
+          "description" : "Id for the person.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Person"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a person.",
+        "description" : "Deletes a person according to personId.",
+        "operationId" : "deletePerson",
+        "parameters" : [ {
+          "name" : "personId",
+          "in" : "path",
+          "description" : "Id for the person.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/people/{personId}/invitations" : {
+      "get" : {
+        "summary" : "Gets all new invitations for a person.",
+        "description" : "Retrieves all new invitation for a person according to personId.",
+        "operationId" : "getAllInvitationsPerPerson",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "personId",
+          "in" : "path",
+          "description" : "Id for the person.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Invitation"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Adds an invitation to a person.",
+        "description" : "Adds an invitation to a person according to personId.",
+        "operationId" : "addInvitation",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "personId",
+          "in" : "path",
+          "description" : "Id for the person.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Invitation object.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Invitation"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Invitation"
+            }
+          }
+        }
+      }
+    },
+    "/people/{personId}/invitations/{invitationId}" : {
+      "get" : {
+        "summary" : "Gets a single invitation.",
+        "description" : "Retrieves a single invitation associated with a person, according to personId.",
+        "operationId" : "getInvitationPerPerson",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "invitationId",
+          "in" : "path",
+          "description" : "Id for the invitation.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Invitation"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Updates an invitation.",
+        "description" : "Updates a single person's id, based on personId and invitationId.",
+        "operationId" : "updateInvitation",
+        "parameters" : [ {
+          "name" : "invitationId",
+          "in" : "path",
+          "description" : "Id for the invitation.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Invitation"
+            }
+          }
+        }
+      }
+    },
+    "/people/{personId}/people" : {
+      "put" : {
+        "summary" : "Updates a person's location and gets the people near them.",
+        "description" : "Causes a person's location to be updated and retrieves a list of all the people that are near the new location.",
+        "operationId" : "getPeopleNearby",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Person object.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Person"
+          }
+        }, {
+          "name" : "personId",
+          "in" : "path",
+          "description" : "Id for the person.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Person"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/squares" : {
+      "get" : {
+        "summary" : "Gets all squares.",
+        "description" : "Retrieves all squares in the database.",
+        "operationId" : "list",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Square"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Initializes squares.",
+        "description" : "Causes pre-set squares to be added to the database. After a database wipe, this must be the first thing added to a new database.",
+        "operationId" : "post",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Square"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/squares/{squareId}" : {
+      "get" : {
+        "summary" : "Gets a square.",
+        "description" : "Retrieves a square according to squareId.",
+        "operationId" : "get",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "squareId",
+          "in" : "path",
+          "description" : "Id for the square.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Square"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a square.",
+        "description" : "Deletes a square according to squareId.",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "squareId",
+          "in" : "path",
+          "description" : "Id for the square.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/squares/{squareId}/vertices" : {
+      "get" : {
+        "summary" : "Gets vertices associated with a square.",
+        "description" : "Retrieves the vertices associated with a squareId.",
+        "operationId" : "vertexList",
+        "parameters" : [ {
+          "name" : "squareId",
+          "in" : "path",
+          "description" : "Id for the square.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Vertex"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Adds square to vertex.",
+        "description" : "Adds the square, by squareId, to the passed vertex.",
+        "operationId" : "postVertex",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "squareId",
+          "in" : "path",
+          "description" : "Id for the square.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "description" : "Vertex object.",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Vertex"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Square"
+            }
+          }
+        }
+      }
+    },
+    "/squares/{squareId}/vertices/{vertexId}" : {
+      "delete" : {
+        "summary" : "Removes a vertex from a square.",
+        "description" : "Deletes a vertex from a square, according to vertexId and squareId.",
+        "operationId" : "deleteVertex",
+        "parameters" : [ {
+          "name" : "squareId",
+          "in" : "path",
+          "description" : "Id for the square.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "vertexId",
+          "in" : "path",
+          "description" : "Id for the vertex.",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/vertices" : {
+      "get" : {
+        "summary" : "Gets all vertices.",
+        "description" : "Retrieves all vertices in the database.",
+        "operationId" : "list",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Vertex"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Initializes vertices in a new database.",
+        "description" : "Initializes vertices in a new database. This is the second operation that must be performed after wiping a database.  Squares should always be initialized first, and people and invitations should not be added until both squares and vertices are already present (in that order).",
+        "operationId" : "post",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Vertex"
+            }
+          }
+        }
+      }
+    },
+    "/vertices/{vertexId}" : {
+      "get" : {
+        "operationId" : "getHTML",
+        "produces" : [ "text/html" ],
+        "parameters" : [ {
+          "name" : "vertexId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Deletes a vertex.",
+        "description" : "Deletes a vertex, according to vertexId.",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "vertexId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : ""
+          }
+        }
+      }
+    },
+    "/vertices/{vertexId}/squares" : {
+      "get" : {
+        "summary" : "Gets the squares associated with a vertex.",
+        "description" : "Gets the squares associated with a vertex, according to vertexId.",
+        "operationId" : "squareList",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "vertexId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Square"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Adds squares to a vertex.",
+        "description" : "Adds squares to a vertex, according to vertexId.",
+        "operationId" : "postSquare",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "vertexId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/Vertex"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Square"
+            }
+          }
+        }
+      }
+    },
+    "/vertices/{vertexId}/squares/{squareId}" : {
+      "delete" : {
+        "summary" : "Deletes a square from a vertex.",
+        "description" : "Deletes a square from a vertex, according to squareId and vertexId.",
+        "operationId" : "deleteSquare",
+        "parameters" : [ {
+          "name" : "vertexId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        }, {
+          "name" : "squareId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : ""
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Invitation" : {
+      "type" : "object",
+      "required" : [ "date", "description", "id", "location", "title", "userReceiverId", "userSenderId", "wasDelivered", "willAttend" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 111,
+          "description" : "invitation_id"
+        },
+        "userSenderId" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 13,
+          "description" : "user_sender_id"
+        },
+        "userReceiverId" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 2,
+          "description" : "user_receiver_id"
+        },
+        "wasDelivered" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "was_delivered"
+        },
+        "willAttend" : {
+          "type" : "boolean",
+          "example" : false,
+          "description" : "will_attend"
+        },
+        "degreesRemaining" : {
+          "type" : "integer",
+          "format" : "int32",
+          "example" : "The number of times the invitation can be reused.",
+          "description" : "degrees_remaining"
+        },
+        "date" : {
+          "type" : "string",
+          "example" : "A string representation of the date for the really fun event.",
+          "description" : "date"
+        },
+        "description" : {
+          "type" : "string",
+          "example" : "This is a description of the really fun event someone is being invited to attend.",
+          "description" : "description"
+        },
+        "title" : {
+          "type" : "string",
+          "example" : "This is the title of my invitation.",
+          "description" : "title"
+        },
+        "location" : {
+          "type" : "string",
+          "example" : "A string representation of the location of the event.",
+          "description" : "location"
+        },
+        "people" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Person"
+          }
+        },
+        "href" : {
+          "type" : "string",
+          "format" : "uri"
+        }
+      }
+    },
+    "Person" : {
+      "type" : "object",
+      "required" : [ "displayName", "googleUserId", "latitude", "longitude", "personId", "userDescription", "userImageLocation" ],
+      "properties" : {
+        "personId" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 1,
+          "description" : "person_id"
+        },
+        "closestVertex" : {
+          "$ref" : "#/definitions/Vertex"
+        },
+        "invitations" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Invitation"
+          }
+        },
+        "latitude" : {
+          "type" : "number",
+          "format" : "double",
+          "example" : 35.0855,
+          "description" : "latitude"
+        },
+        "longitude" : {
+          "type" : "number",
+          "format" : "double",
+          "example" : -106.6497,
+          "description" : "longitude"
+        },
+        "currentSquare" : {
+          "$ref" : "#/definitions/Square"
+        },
+        "displayName" : {
+          "type" : "string",
+          "example" : "ARne arNEssoN",
+          "description" : "display_name"
+        },
+        "userImageLocation" : {
+          "type" : "string",
+          "example" : "https://myimagehere.com",
+          "description" : "user_image_location"
+        },
+        "userDescription" : {
+          "type" : "string",
+          "example" : "This is me. I like coffee. I like dogs. I don't like tater-tots.",
+          "description" : "user_description"
+        },
+        "googleUserId" : {
+          "type" : "string",
+          "example" : "123234345456567",
+          "description" : "google_id"
+        },
+        "href" : {
+          "type" : "string",
+          "format" : "uri"
+        }
+      }
+    },
+    "Square" : {
+      "type" : "object",
+      "required" : [ "id" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 3,
+          "description" : "square_id"
+        },
+        "latitudeLowerBound" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "latitudeUpperBound" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "longitudeLowerBound" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "longitudeUpperBound" : {
+          "type" : "number",
+          "format" : "double"
+        },
+        "people" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Person"
+          }
+        },
+        "vertices" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Vertex"
+          }
+        },
+        "href" : {
+          "type" : "string",
+          "format" : "uri"
+        }
+      }
+    },
+    "Vertex" : {
+      "type" : "object",
+      "required" : [ "id", "latitude", "longitude" ],
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64",
+          "example" : 1,
+          "description" : "vertex_id"
+        },
+        "latitude" : {
+          "type" : "number",
+          "format" : "double",
+          "example" : 35.0855,
+          "description" : "latitude"
+        },
+        "longitude" : {
+          "type" : "number",
+          "format" : "double",
+          "example" : -106.64955,
+          "description" : "longitude"
+        },
+        "squares" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Square"
+          }
+        },
+        "href" : {
+          "type" : "string",
+          "format" : "uri"
+        }
+      }
+    }
+  }
+}

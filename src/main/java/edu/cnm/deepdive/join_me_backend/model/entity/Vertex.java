@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import edu.cnm.deepdive.join_me_backend.view.BaseSquare;
 import edu.cnm.deepdive.join_me_backend.view.BaseVertex;
+import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
@@ -61,11 +62,13 @@ public class Vertex implements BaseVertex {
     Vertex.entityLinks = entityLinks;
   }
 
+  @ApiModelProperty(value = "latitude", required = true, example = "35.0855")
   @Override
   public double getLatitude() {
     return latitude;
   }
 
+  @ApiModelProperty(value = "longitude", required = true, example = "-106.64955")
   @Override
   public double getLongitude() {
     return longitude;
@@ -76,6 +79,7 @@ public class Vertex implements BaseVertex {
     return squares;
   }
 
+  @ApiModelProperty(value = "vertex_id", required = true, example = "1")
   @Override
   public long getId() {
     return id;

@@ -7,6 +7,7 @@ import edu.cnm.deepdive.join_me_backend.view.BaseInvitation;
 import edu.cnm.deepdive.join_me_backend.view.BasePerson;
 import edu.cnm.deepdive.join_me_backend.view.BaseSquare;
 import edu.cnm.deepdive.join_me_backend.view.BaseVertex;
+import io.swagger.annotations.ApiModelProperty;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
@@ -85,7 +86,7 @@ public class Person implements BasePerson {
     Person.entityLinks = entityLinks;
   }
 
-
+  @ApiModelProperty(value = "person_id", required = true, example = "1")
   @Override
   public long getPersonId() {
     return personId;
@@ -100,26 +101,31 @@ public class Person implements BasePerson {
     return entityLinks.linkForSingleResource(Square.class, personId).toUri();
   }
 
+  @ApiModelProperty(value = "latitude", required = true, example = "35.0855")
   @Override
   public double getLatitude() {
     return latitude;
   }
 
+  @ApiModelProperty(value = "longitude", required = true, example = "-106.64970")
     @Override
   public double getLongitude() {
     return longitude;
   }
 
+  @ApiModelProperty(value = "display_name", required = true, example = "ARne arNEssoN")
   @Override
   public String getDisplayName() {
     return displayName;
   }
 
+  @ApiModelProperty(value = "user_image_location", required = true, example = "https://myimagehere.com")
   @Override
   public String getUserImageLocation() {
     return userImageLocation;
   }
 
+  @ApiModelProperty(value = "user_description", required = true, example = "This is me. I like coffee. I like dogs. I don't like tater-tots.")
   @Override
   public String getUserDescription() {
     return userDescription;
@@ -173,6 +179,7 @@ public class Person implements BasePerson {
     this.currentSquare = currentSquare;
   }
 
+  @ApiModelProperty(value = "google_id", required = true, example = "123234345456567")
   @Override
   public String getGoogleUserId() {
     return googleUserId;

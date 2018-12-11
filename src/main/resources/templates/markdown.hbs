@@ -1,0 +1,140 @@
+# {{#info}}{{title}}
+
+## {{join schemes " | "}}://{{host}}{{basePath}}
+
+{{description}}
+
+{{#contact}}
+  [**Contact the developer**](mailto:{{email}})
+{{/contact}}
+
+**Version** {{version}}
+
+{{#if termsOfService}}
+  [**Terms of Service**]({{termsOfService}})
+{{/if}}
+
+{{#license}}[**{{name}}**]({{url}}){{/license}}
+
+{{/info}}
+
+{{#if consumes}}**Consumes:** {{join consumes ", "}}{{/if}}
+
+{{#if produces}}**Produces:** {{join produces ", "}}{{/if}}
+
+{{#if securityDefinitions}}
+  # Security Definitions
+{{/if}}
+{{> security}}
+
+# APIs
+
+
+<table>
+  <thead>
+  <tr>
+    <th>Path</th>
+    <th>Method</th>
+    <th>Summary</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#each paths}}
+    <tr>
+      <th colspan="3" style="text-align: left;"><strong>{{@key}}</strong></th>
+    </tr>
+    {{#this}}
+      {{#get}}<tr><td>&nbsp;</td><td><code>GET</code></td><td><a href="#{{operationId}}">{{Summary}}</a></td></tr>{{/get}}
+      {{#put}}<tr><td>&nbsp;</td><td><code>PUT</code></td><td><a href="#{{operationId}}">{{Summary}}</a></td></tr>{{/put}}
+      {{#post}}<tr><td>&nbsp;</td><td><code>POST</code></td><td><a href="#{{operationId}}">{{Summary}}</a></td></tr>{{/post}}
+      {{#delete}}<tr><td>&nbsp;</td><td><code>DELETE</code></td><td><a href="#{{operationId}}">{{Summary}}</a></td></tr>{{/delete}}
+      {{#option}}<tr><td>&nbsp;</td><td><code>OPTION</code></td><td><a href="#{{operationId}}">{{Summary}}</a></td></tr>{{/option}}
+      {{#patch}}<tr><td>&nbsp;</td><td><code>PATCH</code></td><td><a href="#{{operationId}}">{{Summary}}</a></td></tr>{{/patch}}
+      {{#head}}<tr><td>&nbsp;</td><td><code>HEAD</code></td><td><a href="#{{operationId}}">{{Summary}}</a></td></tr>{{/head}}
+    {{/this}}
+  {{/each}}
+  </tbody>
+</table>
+
+{{#each paths}}
+  ## {{@key}}
+  {{#this}}
+
+    {{#get}}
+      ### <a name="{{operationId}}"></a>GET
+      {{> operation}}
+    {{/get}}
+
+    {{#put}}
+      ### <a name="{{operationId}}"></a>PUT
+      {{> operation}}
+    {{/put}}
+
+    {{#post}}
+      ### <a name="{{operationId}}"></a>POST
+      {{> operation}}
+    {{/post}}
+
+    {{#delete}}
+      ### <a name="{{operationId}}"></a>DELETE
+      {{> operation}}
+    {{/delete}}
+
+    {{#option}}
+      ### <a name="{{operationId}}"></a>OPTION
+      {{> operation}}
+    {{/option}}
+
+    {{#patch}}
+      ### <a name="{{operationId}}"></a>PATCH
+      {{> operation}}
+    {{/patch}}
+
+    {{#head}}
+      ### <a name="{{operationId}}"></a>HEAD
+      {{> operation}}
+    {{/head}}<a name="{{operationId}}"></a>
+
+  {{/this}}
+{{/each}}
+
+# Definitions
+{{#each definitions}}
+  ## <a name="/definitions/{{key}}">{{@key}}</a>
+
+  <table border="1" style="width: 100%">
+    <colgroup>
+      <col span="2" width="20%">
+      <col width="25%">
+      <col width="35%">
+    </colgroup>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Mode</th>
+      <th>Description</th>
+      <!--<th>Example</th>-->
+    </tr>
+    {{#each this.properties}}
+      <tr>
+        <td><strong>{{@key}}</strong></td>
+        <td>
+          {{#ifeq type "array"}}
+            {{#items.$ref}}
+              {{type}}[<a href="{{items.$ref}}">{{basename items.$ref}}</a>]
+            {{/items.$ref}}
+            {{^items.$ref}}{{type}}[{{items.type}}]{{/items.$ref}}
+          {{else}}
+            {{#$ref}}<a href="{{$ref}}">{{basename $ref}}</a>{{/$ref}}
+            {{^$ref}}{{type}}{{#format}} ({{format}}){{/format}}{{/$ref}}
+          {{/ifeq}}
+        </td>
+        <td>
+          {{#required}}required{{/required}}{{^required}}{{#readOnly}}read-only{{/readOnly}}{{^readOnly}}optional{{/readOnly}}{{/required}}
+        </td>
+        <td>{{#description}}{{{description}}}{{/description}}{{^description}}-{{/description}}</td>
+        <!--<td>{{example}}</td>-->
+      </tr>
+    {{/each}}
+  </table>
+{{/each}}
