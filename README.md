@@ -55,7 +55,7 @@ Marshmellow.
 
 ... /rest/people
 
-[API documentation]()
+[API documentation](https://github.com/ProjectLocus/join_me_backend/blob/master/docs/rest/api.md)
 
 
 ## External Services, 3rd Part Libraries with Licenses:
