@@ -51,6 +51,13 @@ was developed in Java 8 and the app had a minimum SDK level of 23 but has been t
 SDKs 24-28. Most test were ran on both emulators and physical android devices that run at least
 Marshmellow.
 
+## Main Server Endpoint (relative to server):
+
+... /rest/people
+
+[API documentation]()
+
+
 ## External Services, 3rd Part Libraries with Licenses:
 * Spring Boot:
   * Licenses:
@@ -111,6 +118,3 @@ Marshmellow.
 * * First, call a post operation on /squares
 * * Second, call a post operation on /vertices
 * At this point full interaction with the database, using the defined end points, can take place.
-
-## Entity Relationship Diagram
-<img src="https://rawcdn.githack.com/ProjectLocus/join_me_backend/0eab4a9a31dcf15e3fe4e8ed761b42bbc624d571/erd.jpg"/>
