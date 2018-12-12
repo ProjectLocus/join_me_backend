@@ -4,10 +4,11 @@ Amongst all of the social media apps out there that are connecting people with o
 our app has the fine opportunity of connecting people on a more intimate level. Not across the world,
 but maybe across the street. 
 
-The files in this repository are for building the backend in IntelliJ Idea using a Spring Boot framework. The backend is completed and fully functional for supporting the functions of the frontend.  There are no known bugs in the backend, which has been tested on locally deployed machines as well as on Amazon Web Services Elastic Beanstalk. There are no known devices that the backend cannot be run on, providing that the machine can run IntelliJ Idea. 
+The files in this repository are for building the backend in IntelliJ Idea using a Spring Boot framework. The backend is completed and fully functional for supporting the functions of the frontend.  There are no known bugs in the backend, which has been tested on locally deployed machines as well as on Amazon Web Services Elastic Beanstalk. There are no known devices that the backend cannot be run on, providing that the machine can run IntelliJ Idea and the JVM. 
 
 The API endpoints currently return superfluous information. Stretch goals include:
-* Fixing the API endpoints to return only the needed information and nothing extra.  
+* Fixing the API endpoints to return only the needed information and nothing extra. 
+* Oauth2 verification of json tokens for id/role authorization.
 * An additional stretch goal is to support keeping an internal list of all persons who have accepted a particular invitation. * Implementing functionality that would allow for "degrees of separation", meaning that an invitation could be resent by its recipients a certain number of times.
 
 Here's our [Apache 2.0 License](https://github.com/ProjectLocus/JoinMe/blob/master/LICENSE)
