@@ -56,9 +56,19 @@ was developed in Java 8 and the app had a minimum SDK level of 23 but has been t
 SDKs 24-28. Most test were ran on both emulators and physical android devices that run at least
 Marshmellow.
 
-## Main Server Endpoint (relative to server):
+## Main Server Endpoints (relative to server):
 
-... /rest/people
+Post... /rest/squares
+
+Post... /rest/vertices
+
+Post... /rest/people
+
+Get... /rest/people/{personId}/invitations
+
+Post... /rest/people/{personId}/invitations
+
+Put... /rest/people/{personId}/people
 
 [API documentation](https://github.com/ProjectLocus/join_me_backend/blob/master/docs/rest/api.md)
 
