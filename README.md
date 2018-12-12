@@ -70,7 +70,7 @@ Post... /rest/people/{personId}/invitations
 
 Put... /rest/people/{personId}/people
 
-[API documentation](https://github.com/ProjectLocus/join_me_backend/blob/master/docs/rest/api.md)
+[API documentation](docs/rest/api.md)
 
 There is no public server which hosts the backend, but it can be deployed locally or on a private server (such as A2 or AWS Elastic Beanstalk).
 
