@@ -77,7 +77,7 @@ There is no public server which hosts the backend, but it can be deployed locall
 ## JavaDocs and DDL
 [JavaDocs]()
 
-[DDL]()
+[DDL](https://github.com/ProjectLocus/join_me_backend/blob/master/create.sql)
 
 ## External Services, 3rd Part Libraries with Licenses:
 * Spring Boot:
