@@ -74,6 +74,9 @@ Put... /rest/people/{personId}/people
 
 There is no public server which hosts the backend, but it can be deployed locally or on a private server (such as A2 or AWS Elastic Beanstalk).
 
+## JavaDocs and DDL
+[JavaDocs]()
+[DDL]()
 
 ## External Services, 3rd Part Libraries with Licenses:
 * Spring Boot:
