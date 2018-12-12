@@ -1,0 +1,5 @@
+edu.cnm.deepdive.join_me_backend
+edu.cnm.deepdive.join_me_backend.controller
+edu.cnm.deepdive.join_me_backend.model.dao
+edu.cnm.deepdive.join_me_backend.model.entity
+edu.cnm.deepdive.join_me_backend.view
