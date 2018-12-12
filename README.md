@@ -75,7 +75,7 @@ Put... /rest/people/{personId}/people
 There is no public server which hosts the backend, but it can be deployed locally or on a private server (such as A2 or AWS Elastic Beanstalk).
 
 ## JavaDocs and DDL
-[JavaDocs]()
+[JavaDocs](https://github.com/ProjectLocus/join_me_backend/tree/master/javadocs)
 
 [DDL](https://github.com/ProjectLocus/join_me_backend/blob/master/create.sql)
 
