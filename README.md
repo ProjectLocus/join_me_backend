@@ -136,6 +136,6 @@ There is no public server which hosts the backend, but it can be deployed locall
 * Update application.properties to use the correct server.port number (be sure the port isn't being used by anything else).
 * Run the application.
 * Now the database is running, initialize the grid portion of the backend by:
- * First, call a post operation on /squares
- * Second, call a post operation on /vertices
+   * First, call a post operation on /squares
+   * Second, call a post operation on /vertices
 * At this point full interaction with the database, using the defined end points, can take place.
